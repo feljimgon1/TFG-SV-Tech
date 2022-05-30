@@ -1,0 +1,95 @@
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Editar información">
+
+    <div class="alert-container pt-3">
+      <div class="alert alert-warning">
+        ¡ATENCIÓN! Si procede a editar la información se sobreescribirá la que tenga escrita.
+      </div>
+    </div>
+
+    <form class="py-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre de la empresa</mat-label>
+          <input formControlName="nombreEmpresa" matInput>
+          <mat-hint class="mat-hint">Nombre de la empresa</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Palabras clave relacionadas con la actividad de su empresa (separadas por coma)</mat-label>
+          <input formControlName="palabrasClave" matInput>
+          <mat-hint class="mat-hint">Palabras clave relacionadas con la actividad de su empresa</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Código CNAE del sector</mat-label>
+          <input formControlName="codigoCNAE" matInput>
+          <mat-hint class="mat-hint">Código CNAE del sector de su empresa</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Empresas competidoras (separadas por coma)</mat-label>
+          <input formControlName="empresasCompetidoras" matInput>
+          <mat-hint class="mat-hint">Empresas competidoras</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Número de empleados actual de su empresa</mat-label>
+          <input formControlName="numeroEmpleadosActual" matInput>
+          <mat-hint class="mat-hint">Número de empleados actual</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Años que lleva su empresa activa</mat-label>
+          <input formControlName="vidaEmpresa" matInput>
+          <mat-hint class="mat-hint">Años que lleva su empresa activa</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <button class="btn">
+        Guardar información adicional
+      </button>
+
+    </form>
+  </mat-tab>
+
+  <mat-tab label="Información actual">
+    <div class="table-responsive p-3">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th class="align-middle">Nombre de la empresa</th>
+            <th class="align-middle">Palabras clave</th>
+            <th class="align-middle">Código CNAE del sector</th>
+            <th class="align-middle">Empresas competidoras</th>
+            <th class="align-middle">Número de empleados</th>
+            <th class="align-middle">Vida de la empresa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="align-middle">{{infoAdicional.infoAdicional.nombreEmpresa}}</td>
+            <td class="align-middle">{{infoAdicional.infoAdicional.palabrasClave}}</td>
+            <td class="align-middle">{{infoAdicional.infoAdicional.codigoCNAE}}</td>
+            <td class="align-middle">{{infoAdicional.infoAdicional.empresasCompetidoras}}</td>
+            <td class="align-middle">{{infoAdicional.infoAdicional.numeroEmpleadosActual}}</td>
+            <td class="align-middle">{{infoAdicional.infoAdicional.vidaEmpresa}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+
+
+</mat-tab-group>

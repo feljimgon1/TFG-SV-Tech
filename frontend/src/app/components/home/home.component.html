@@ -1,0 +1,99 @@
+<div class="main">
+    <div class="row">
+        <div class="col">
+            <div class="title">
+                <p>Smart Valuation Technology</p>
+            </div>
+        </div>
+        <div class="col">
+              <div class="servicios" *ngIf="!((authService.getRole()=='BASICO')||(authService.getRole()=='MEDIUM')||(authService.getRole()=='PREMIUM')||(authService.getRole()=='ADMIN'))">
+                <a href="#section-2">
+                    ¡Nuestros servicios aquí!  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                      </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="moto">
+        <h4>Dedica unos minutos y podrás conocer tu empresa en los próximos cinco años.</h4>
+    </div>
+</div>
+<section class="section-1">
+    <div class="method">
+        <p>El método de trabajo que proponemos permite maximizar las oportunidades y minimizar los riesgos y se apoya en los
+            siguientes pilares</p>
+    </div>
+    <div class="pilares">
+        <div class="card">
+            <p>Es un método que gracias a la gestión de la información une el <span style="font-weight: bold;">sentido común</span> y la <span style="font-weight: bold;">sencillez</span>.</p>
+        </div>
+        <div class="card">
+            <p>Facilita la <strong>comunicación</strong> de los resultados y aumenta la probabilidad de
+                <strong>éxito</strong>.</p>
+        </div>
+        <div class="card">
+            <p>Permite desarrollar una <strong>gestión flexible</strong>.</p>
+        </div>
+    </div>
+<hr id="section-2">
+</section>
+
+<ng-container *ngIf="!(authService.getRole()=='ADMIN')">
+  <section class="section-2" *ngIf="!((authService.getRole()=='BASICO')||(authService.getRole()=='MEDIUM')||(authService.getRole()=='PREMIUM')); else paid">
+
+    <div class="container">
+        <div class="row">
+          <div class="card">
+            <div class="card-header-service">
+              <h1>Básico</h1>
+              <hr>
+            </div>
+            <div class="card-body">
+              <h2>500€</h2>
+              <li><span style="color: green;">&#10003;</span>Plan económico financiero</li>
+              <li><span style="color: red;">&#10007;</span><s>Información del sector</s></li>
+              <li><span style="color: red;">&#10007;</span><s>Consultoría con un experto</s></li>
+              <a routerLink="/basic" class="btn">Contratar el servicio</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header-service">
+              <h1>Medium</h1>
+              <hr>
+            </div>
+            <div class="card-body">
+              <h2>1000€</h2>
+              <li><span style="color: green;">&#10003;</span>Plan económico financiero</li>
+              <li><span style="color: green;">&#10003;</span>Información del sector</li>
+              <li><span style="color: red;">&#10007;</span><s>Consultoría con un experto</s></li>
+              <a routerLink="/medium" class="btn">Contratar el servicio</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header-service">
+              <h1>Premium</h1>
+              <hr>
+            </div>
+            <div class="card-body">
+              <h2>1500€</h2>
+              <li><span style="color: green;">&#10003;</span>Plan económico financiero</li>
+              <li><span style="color: green;">&#10003;</span>Información del sector</li>
+              <li><span style="color: green;">&#10003;</span>Consultoría con un experto</li>
+              <a routerLink="/premium" class="btn">Contratar el servicio</a>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    
+</section>
+
+<ng-template #paid>
+  <section class="pagado p-5">
+    Usted ya ha contratado uno de nuestros servicios. Por favor, diríjase al siguiente correo para más información
+    <p class="email pt-5">svtech.info@gmail.com</p>
+  </section>
+</ng-template>
+<hr> 
+</ng-container>

@@ -1,0 +1,22 @@
+.content {
+    height: 60vh;
+    align-items: center;
+    display: flex;
+    .container {
+        margin: 0 auto;
+    }
+}
+
+@media(min-width:1000px){
+    .container{
+        width: 50%;
+    }
+}
+
+#cardInfo {
+    display: block;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.375rem;
+}

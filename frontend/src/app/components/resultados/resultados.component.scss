@@ -1,0 +1,51 @@
+/*General*/
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Tablas*/
+
+.void-content {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading {
+    margin: 0 auto;
+    height: 25%;
+}
+
+.btn {
+    border: 1px solid black;
+}
+
+.btn:hover {
+    background-color: black;
+    color: #fff;
+}
+
+.header {
+    font-weight: bold;
+}
+
+.volver {
+    text-align: center;
+    width: 15%;
+    padding: 1.5%;
+    border: 1px solid #e0e0e0;
+    margin: 0 auto;
+}
+
+.volver:hover{
+    cursor: pointer;
+    background-color: #e0e0e0;
+
+}
+
+.test-container{
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,142 @@
+/*General*/
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Navegación plan financiero*/
+
+@media (max-width: 1100px) {
+    .plan-grid {
+        width: 35%;
+        margin: 0 auto;
+    }
+
+    .plan-item {
+        margin-bottom: 1em;
+        text-align: center;
+        border: 1px solid #e0e0e0;
+        padding: 3%;
+    }
+}
+
+@media (min-width: 1100px) {
+    .plan-grid {
+        width: 80%;
+        margin: 0 auto;
+        display: grid;
+        gap: 1em;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .plan-item {
+        border: 1px solid #e0e0e0;
+        padding: 7%;
+        transition: 0.3s;
+    }
+
+    .plan-item:hover {
+        cursor: pointer;
+        color: black;
+        background-color: #e0e0e0;
+    }
+
+    .active-plan-item{
+        background-color: #e0e0e0;
+        padding: 7%;
+        transition: 0.3s;   
+    }
+
+    .active-plan-item:hover{
+        cursor: pointer;
+    }
+
+    .activo-pasivo-warning{
+        border: 1px solid #856404;
+        color: #856404;
+        padding: 7%;
+        transition: 0.3s;
+        background-color: #fff3cd;
+    }
+
+    .activo-pasivo-warning:hover{
+        cursor: pointer;
+    }
+}
+
+.resultados {
+    text-align: center;
+    width: 25%;
+    margin: 0 auto;
+    border: 3px solid #e0e0e0;
+    padding: 1%;
+    transition: 0.3s;
+}
+
+.resultados:hover {
+    cursor: pointer;
+    color: black;
+    background-color: #e0e0e0;
+}
+
+// Actual
+
+/*Formulario*/
+
+mat-tab-group {
+    width: 100%;
+    margin: 0 auto;
+}
+
+form {
+    width: 85%;
+    margin: 0 auto;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.btn{
+    border: 1px solid black;
+    transition: .3s;
+}
+
+.btn:hover{
+    color: white;
+    background-color: black;
+}
+
+label{
+    font-weight: bold;
+}
+
+/*Tabla de resultados*/
+
+
+@media (min-width: 600px) {
+    .r-results {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+.r-results {
+    padding: 2%;
+    border-top: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    transition: 0.3s;
+}
+
+.r-results:hover {
+    background-color: #ddd;
+}
+
+.c2-results {
+    text-align: right;
+}
+
+.header{
+    font-weight: 650;
+    padding-left: 5%;
+}

@@ -1,0 +1,16 @@
+<div class="container mt-5 p-5" >
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-7">
+            <div class="box p-3">
+                <div class="text-center mt-3">
+                    <h5 class="mb-3 mt-0">{{name}} <span>{{surname}}</span></h5>
+                    <span class="role p-3" *ngIf="rol!='USER'">{{rol}}</span>
+                    <div [ngClass]="rol!='USER'?'px-4 mt-3':'mt-5'">
+                        <p class="fonts">{{email}}</p>
+                    </div>
+                    <!-- <div class="buttons"> <button class="btn btn-outline-primary px-4">Editar</button> </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

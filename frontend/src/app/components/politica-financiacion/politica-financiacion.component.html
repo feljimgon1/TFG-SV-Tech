@@ -1,0 +1,405 @@
+<div class="plan-grid pb-3">
+  <ng-container *ngFor="let item of planFinanciero">
+    <div (click)="redirect(item.path)" [ngClass]="(item.name=='Balance')&&pasivo!=activo?'activo-pasivo-warning':(item.name=='Política de financiación'?'active-plan-item':'plan-item')">{{item.name}}</div>
+  </ng-container>
+</div>
+
+<div class="col resultados mb-5 mt-4"  routerLink="/resultados">
+  Resultados
+</div>
+
+<mat-tab-group class="py-3 pb-5" mat-align-tabs="center">
+  <mat-tab label="Formulario">
+    <div class="col pt-3">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <label style="font-weight: bold;">Vencimiento de la deuda antigua</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="vencimientoDeudaAntiguaUno" matInput>
+                <mat-hint class="mat-hint">Vencimiento de la deuda antigua en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="vencimientoDeudaAntiguaDos" matInput>
+                <mat-hint class="mat-hint">Vencimiento de la deuda antigua en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="vencimientoDeudaAntiguaTres" matInput>
+                <mat-hint class="mat-hint">Vencimiento de la deuda antigua en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="vencimientoDeudaAntiguaCuatro" matInput>
+                <mat-hint class="mat-hint">Vencimiento de la deuda antigua en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="vencimientoDeudaAntiguaCinco" matInput>
+                <mat-hint class="mat-hint">Vencimiento de la deuda antigua en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <label>Interés deuda antigua</label>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="interesDeudaAntiguaUno" matInput>
+                <mat-hint class="mat-hint">Interés de la deuda antigua en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="interesDeudaAntiguaDos" matInput>
+                <mat-hint class="mat-hint">Interés de la deuda antigua en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="interesDeudaAntiguaTres" matInput>
+                <mat-hint class="mat-hint">Interés de la deuda antigua en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="interesDeudaAntiguaCuatro" matInput>
+                <mat-hint class="mat-hint">Interés de la deuda antigua en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="interesDeudaAntiguaCinco" matInput>
+                <mat-hint class="mat-hint">Interés de la deuda antigua en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <label>Deuda nueva</label>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="deudaNuevaUno" matInput>
+                <mat-hint class="mat-hint">Deuda nueva en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="deudaNuevaDos" matInput>
+                <mat-hint class="mat-hint">Deuda nueva en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="deudaNuevaTres" matInput>
+                <mat-hint class="mat-hint">Deuda nueva en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="deudaNuevaCuatro" matInput>
+                <mat-hint class="mat-hint">Deuda nueva en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>Año 5</mat-label>
+              <input formControlName="deudaNuevaCinco" matInput>
+              <mat-hint class="mat-hint">Deuda nueva en el año 5</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <label>Vencimiento de la deuda nueva</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="vencimientoDeudaNuevaUno" matInput>
+                <mat-hint class="mat-hint">Vencimiento de la deuda nueva en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="vencimientoDeudaNuevaDos" matInput>
+                <mat-hint class="mat-hint">Vencimiento de la deuda nueva en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="vencimientoDeudaNuevaTres" matInput>
+                <mat-hint class="mat-hint">Vencimiento de la deuda nueva en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="vencimientoDeudaNuevaCuatro" matInput>
+                <mat-hint class="mat-hint">Vencimiento de la deuda nueva en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="vencimientoDeudaNuevaCinco" matInput>
+                <mat-hint class="mat-hint">Vencimiento de la deuda nueva en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <label>Interés deuda nueva</label>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="interesDeudaNuevaUno" matInput>
+                <mat-hint class="mat-hint">Interés de la deuda nueva en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="interesDeudaNuevaDos" matInput>
+                <mat-hint class="mat-hint">Interés de la deuda nueva en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="interesDeudaNuevaTres" matInput>
+                <mat-hint class="mat-hint">Interés de la deuda nueva en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="interesDeudaNuevaCuatro" matInput>
+                <mat-hint class="mat-hint">Interés de la deuda nueva en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="interesDeudaNuevaCinco" matInput>
+                <mat-hint class="mat-hint">Interés de la deuda nueva en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <label>Ampliación de capital y prima de emisión</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Ampliación de capital</mat-label>
+                <input formControlName="ampliacionCapital" matInput>
+                <mat-hint class="mat-hint">Ampliación de capital</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Prima de emisión</mat-label>
+                <input formControlName="primaEmision" matInput>
+                <mat-hint class="mat-hint">Prima de emisión</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn">Guardar política de financiación</button>
+      </form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Tabla de resultados">
+
+    <div class="col pt-3">
+      
+      <div class="row r-results">
+        <div class="col c1-results">Vencimiento de la deuda antigua (en años)</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{politicaFinanciacion.vencimientoDeudaAntiguaUno}} años</div>
+            <div class="col pt-1">{{politicaFinanciacion.vencimientoDeudaAntiguaDos}} años</div>
+            <div class="col pt-1">{{politicaFinanciacion.vencimientoDeudaAntiguaTres}} años</div>
+            <div class="col pt-1">{{politicaFinanciacion.vencimientoDeudaAntiguaCuatro}} años</div>
+            <div class="col pt-1">{{politicaFinanciacion.vencimientoDeudaAntiguaCinco}} años</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Interés de la deuda antigua</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{politicaFinanciacion.interesDeudaAntiguaUno | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaFinanciacion.interesDeudaAntiguaDos | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaFinanciacion.interesDeudaAntiguaTres | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaFinanciacion.interesDeudaAntiguaCuatro | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaFinanciacion.interesDeudaAntiguaCinco | number:'1.2-2':'es-Es'}}%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Deuda nueva</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{politicaFinanciacion.deudaNuevaUno | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{politicaFinanciacion.deudaNuevaDos | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{politicaFinanciacion.deudaNuevaTres | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{politicaFinanciacion.deudaNuevaCuatro | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{politicaFinanciacion.deudaNuevaCinco | number:'1.2-2':'es-Es'}}€</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Vencimiento de la deuda nueva (en años)</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{politicaFinanciacion.vencimientoDeudaNuevaUno}} años</div>
+            <div class="col pt-1">{{politicaFinanciacion.vencimientoDeudaNuevaDos}} años</div>
+            <div class="col pt-1">{{politicaFinanciacion.vencimientoDeudaNuevaTres}} años</div>
+            <div class="col pt-1">{{politicaFinanciacion.vencimientoDeudaNuevaCuatro}} años</div>
+            <div class="col pt-1">{{politicaFinanciacion.vencimientoDeudaNuevaCinco}} años</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Interés de la deuda nueva</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{politicaFinanciacion.interesDeudaNuevaUno | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaFinanciacion.interesDeudaNuevaDos | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaFinanciacion.interesDeudaNuevaTres | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaFinanciacion.interesDeudaNuevaCuatro | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaFinanciacion.interesDeudaNuevaCinco | number:'1.2-2':'es-Es'}}%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Ampliación de capital</div>
+        <div class="col c2-results">{{politicaFinanciacion.ampliacionCapital | number:'1.2-2':'es-Es'}}€</div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Prima de emisión</div>
+        <div class="col c2-results">{{politicaFinanciacion.primaEmision | number:'1.2-2':'es-Es'}}€</div>
+      </div>
+
+    </div>
+
+
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,433 @@
+<div class="container p-5">
+    <div id="alert" class="row show-hide-message" style="display: flex; justify-content: center;">
+      <div [ngClass]="messageClass">
+        {{ message }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-card>
+          <mat-tab-group>
+            <mat-tab label="Balance">
+              <mat-card-title style="text-align: center;">Balance</mat-card-title>
+              <mat-card-content>
+                <form [formGroup]="formBalance" (ngSubmit)="onSubmitBalance()">
+                  <div class="form-group">
+                    <input type="number" formControlName="inmovilizadoInmaterial" class="form-control"
+                      placeholder="Inmovilizado inmaterial" />
+                  </div>
+                  <div class="form-group">
+                    <input type="number" formControlName="inmovilizadoMaterial" class="form-control"
+                      placeholder="Inmovilizado Material" />
+                  </div>
+                  <div class="form-group">
+                    <input type="number" formControlName="otrosActivosFijos" class="form-control"
+                      placeholder="Otros activos no corrientes" />
+                  </div>
+                  <div class="form-group"><input type="number" formControlName="existencias" class="form-control"
+                      placeholder="Existencias" /></div>
+                  <div class="form-group"><input type="number" formControlName="deudores" class="form-control"
+                      placeholder="Deudores" /></div>
+                  <div class="form-group"><input type="number" formControlName="otrosActivosLiquidos" class="form-control"
+                      placeholder="Otros activos líquidos" /></div>
+                  <div class="form-group"><input type="number" formControlName="capitalSuscrito" class="form-control"
+                      placeholder="Capital suscrito" /></div>
+                  <div class="form-group"><input type="number" formControlName="otrosFondosPropios" class="form-control"
+                      placeholder="Otros fondos propios" /></div>
+                  <div class="form-group"><input type="number" formControlName="acreedoresLP" class="form-control"
+                      placeholder="Deuda Nueva" /></div>
+                  <div class="form-group"><input type="number" formControlName="otrosPasivosFijos" class="form-control"
+                      placeholder="Deuda antigua" /></div>
+                  <div class="form-group"><input type="number" formControlName="provisiones" class="form-control"
+                      placeholder="Provisiones" /></div>
+                  <div class="form-group"><input type="number" formControlName="deudasFinancieras" class="form-control"
+                      placeholder="Deudas financieras" /></div>
+                  <div class="form-group"><input type="number" formControlName="acreedoresComerciales"
+                      class="form-control" placeholder="Acreedores comerciales" /></div>
+                  <div class="form-group"><input type="number" formControlName="otrosPasivosLiquidos" class="form-control"
+                      placeholder="Otros pasivos líquidos" /></div>
+                  <button class="btn">Guardar balance</button>
+                </form>
+              </mat-card-content>
+            </mat-tab>
+            <mat-tab label="Cuenta Pérdidas y Ganancias">
+              <mat-card-title style="text-align: center;">Cuenta de Pérdidas y Ganancias</mat-card-title>
+              <mat-card-content>
+                <form [formGroup]="formCuentaPerdidasGanancias" (ngSubmit)="onSubmitCuentaPerdidasGanancias()">
+                  <div class="form-group">
+                    <input type="number" formControlName="importeNetoCifraVentas" class="form-control"
+                      placeholder="Importe neto de cifra de ventas" />
+                  </div>
+                  <div class="form-group">
+                    <input type="number" formControlName="otrosIngresosExplotacion" class="form-control"
+                      placeholder="Otros ingresos de explotación" />
+                  </div>
+                  <div class="form-group">
+                    <input type="number" formControlName="trppi" class="form-control" placeholder="TRPPI" />
+                  </div>
+                  <div class="form-group"><input type="number" formControlName="consumoMercaderiasMaterias"
+                      class="form-control" placeholder="Consumo de mercaderías y materias" /></div>
+                  <div class="form-group"><input type="number" formControlName="gastoPersonal" class="form-control"
+                      placeholder="Gasto de personal" /></div>
+                  <div class="form-group"><input type="number" formControlName="otrosGastosExplotacion"
+                      class="form-control" placeholder="Otros gastos de explotación" /></div>
+                  <div class="form-group"><input type="number" formControlName="cat" class="form-control"
+                      placeholder="CAT" />
+                  </div>
+                  <div class="form-group"><input type="number" formControlName="ingresosFinancieros" class="form-control"
+                      placeholder="Ingresos financieros" /></div>
+                  <div class="form-group"><input type="number" formControlName="gastosFinancieros" class="form-control"
+                      placeholder="Gastos financieros" /></div>
+                  <button class="btn">Guardar cuenta de pérdidas y ganancias</button>
+                </form>
+              </mat-card-content>
+            </mat-tab>
+            <mat-tab label="Estrategia de Mercado">
+              <mat-card-title style="text-align: center;">Estrategia de mercado</mat-card-title>
+              <mat-card-content>
+                <div class="row">
+                  <div class="col">
+                    <form [formGroup]="formEstrategiaMercado" (ngSubmit)="onSubmitEstrategiaMercado()"
+                      style="width: 100%;">
+                      <div class="main" style="margin-top: 2%;">
+                        <label style="text-align: center; font-weight: bold;">Objetivo de ventas en 5 años
+                          (€)</label>
+                        <div class="form-group"><input style="width: 80%; margin: auto;" type="number"
+                            formControlName="objetivoVentasAnyoCinco" class="form-control" placeholder="Ventas totales" />
+                        </div>
+                        <label style="text-align: center; font-weight: bold;">Porcentaje de ventas por año</label>
+                        <div class="ventas">
+                          <div class="form-group"><input type="number" formControlName="ventasAlcanzadasUno"
+                              class="form-control" placeholder="Año 1" /></div>
+                          <div class="form-group"><input type="number" formControlName="ventasAlcanzadasDos"
+                              class="form-control" placeholder="Año 2" /></div>
+                          <div class="form-group"><input type="number" formControlName="ventasAlcanzadasTres"
+                              class="form-control" placeholder="Año 3" /></div>
+                          <div class="form-group"><input type="number" formControlName="ventasAlcanzadasCuatro"
+                              class="form-control" placeholder="Año 4" /></div>
+                          <div class="form-group"><input type="number" formControlName="ventasAlcanzadasCinco"
+                              class="form-control" placeholder="Año 5" /></div>
+                        </div>
+                        <label style="text-align: center; font-weight: bold;">Número de empleados por año</label>
+                        <div class="num-empleados">
+                          <div class="form-group"><input type="number" formControlName="numeroEmpleadosUno"
+                              class="form-control" placeholder="Año 1" /></div>
+                          <div class="form-group"><input type="number" formControlName="numeroEmpleadosDos"
+                              class="form-control" placeholder="Año 2" /></div>
+                          <div class="form-group"><input type="number" formControlName="numeroEmpleadosTres"
+                              class="form-control" placeholder="Año 3" /></div>
+                          <div class="form-group"><input type="number" formControlName="numeroEmpleadosCuatro"
+                              class="form-control" placeholder="Año 4" /></div>
+                          <div class="form-group"><input type="number" formControlName="numeroEmpleadosCinco"
+                              class="form-control" placeholder="Año 5" /></div>
+                        </div>
+                        <label style="text-align: center; font-weight: bold;">Gasto en empleados por año</label>
+                        <div class="gasto-empleados">
+                          <div class="form-group"><input type="number" formControlName="gastoEmpleadoUno"
+                              class="form-control" placeholder="Año 1" /></div>
+                          <div class="form-group"><input type="number" formControlName="gastoEmpleadoDos"
+                              class="form-control" placeholder="Año 2" /></div>
+                          <div class="form-group"><input type="number" formControlName="gastoEmpleadoTres"
+                              class="form-control" placeholder="Año 3" /></div>
+                          <div class="form-group"><input type="number" formControlName="gastoEmpleadoCuatro"
+                              class="form-control" placeholder="Año 4" /></div>
+                          <div class="form-group"><input type="number" formControlName="gastoEmpleadoCinco"
+                              class="form-control" placeholder="Año 5" /></div>
+                        </div>
+                        <label style="text-align: center; font-weight: bold;">Aprovisionamiento por ventas por
+                          año</label>
+                        <div class="aprovisionamiento-ventas">
+                          <div class="form-group"><input type="number" formControlName="aprovisionamientoPorVentasUno"
+                              class="form-control" placeholder="Año 1" /></div>
+                          <div class="form-group"><input type="number" formControlName="aprovisionamientoPorVentasDos"
+                              class="form-control" placeholder="Año 2" /></div>
+                          <div class="form-group"><input type="number" formControlName="aprovisionamientoPorVentasTres"
+                              class="form-control" placeholder="Año 3" /></div>
+                          <div class="form-group"><input type="number" formControlName="aprovisionamientoPorVentasCuatro"
+                              class="form-control" placeholder="Año 4" /></div>
+                          <div class="form-group"><input type="number" formControlName="aprovisionamientoPorVentasCinco"
+                              class="form-control" placeholder="Año 5" /></div>
+                        </div>
+                        <label style="text-align: center; font-weight: bold;">Otros gastos de explotación por ventas
+                          por
+                          año</label>
+                        <div class="otros-gastos-explotacion-ventas">
+                          <div class="form-group"><input type="number"
+                              formControlName="otrosGastosExplotacionPorVentasUno" class="form-control"
+                              placeholder="Año 1" /></div>
+                          <div class="form-group"><input type="number"
+                              formControlName="otrosGastosExplotacionPorVentasDos" class="form-control"
+                              placeholder="Año 2" /></div>
+                          <div class="form-group"><input type="number"
+                              formControlName="otrosGastosExplotacionPorVentasTres" class="form-control"
+                              placeholder="Año 3" /></div>
+                          <div class="form-group"><input type="number"
+                              formControlName="otrosGastosExplotacionPorVentasCuatro" class="form-control"
+                              placeholder="Año 4" /></div>
+                          <div class="form-group"><input type="number"
+                              formControlName="otrosGastosExplotacionPorVentasCinco" class="form-control"
+                              placeholder="Año 5" /></div>
+                        </div>
+                        <button class="btn">Guardar estrategia de mercado</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-tab>
+            <mat-tab label="Política de Inversión">
+              <mat-card-title style="text-align: center;">Política de inversión</mat-card-title>
+              <mat-card-content>
+                <div class="row">
+                  <form [formGroup]="formPoliticaInversion" (ngSubmit)="onSubmitPoliticaInversion()" style="width: 100%;">
+                    <div class="main" style="margin-top: 2%;">
+                      <label style="text-align: center; font-weight: bold;">Inversión del inmovilizado inmaterial</label>
+                      <div class="inversion-inmovilizado-inmaterial">
+                        <div class="form-group"><input type="number" formControlName="inversionInmovilizadoInmaterialUno"
+                            class="form-control" placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="inversionInmovilizadoInmaterialDos"
+                            class="form-control" placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="inversionInmovilizadoInmaterialTres"
+                            class="form-control" placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="inversionInmovilizadoInmaterialCuatro"
+                            class="form-control" placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="inversionInmovilizadoInmaterialCinco"
+                            class="form-control" placeholder="Año 5" /></div>
+                      </div>
+                      <label style="text-align: center; font-weight: bold;">Vida inmovilizado inmaterial</label>
+                      <div class="vida-inmaterial">
+                        <div class="form-group"><input type="number" formControlName="vidaInmInmaterialUno"
+                            class="form-control" placeholder="Año uno" /></div>
+                        <div class="form-group"><input type="number" formControlName="vidaInmInmaterialDos"
+                            class="form-control" placeholder="Año dos" /></div>
+                        <div class="form-group"><input type="number" formControlName="vidaInmInmaterialTres"
+                            class="form-control" placeholder="Año tres" /></div>
+                        <div class="form-group"><input type="number" formControlName="vidaInmInmaterialCuatro"
+                            class="form-control" placeholder="Año cuatro" /></div>
+                        <div class="form-group"><input type="number" formControlName="vidaInmInmaterialCinco"
+                            class="form-control" placeholder="Año cinco" /></div>
+                      </div>
+                      <label style="text-align: center; font-weight: bold;">Inversión del inmovilizado material</label>
+                      <div class="inversion-inmovilizado-material">
+                        <div class="form-group"><input type="number" formControlName="inversionInmovilizadoMaterialUno"
+                            class="form-control" placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="inversionInmovilizadoMaterialDos"
+                            class="form-control" placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="inversionInmovilizadoMaterialTres"
+                            class="form-control" placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="inversionInmovilizadoMaterialCuatro"
+                            class="form-control" placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="inversionInmovilizadoMaterialCinco"
+                            class="form-control" placeholder="Año 5" /></div>
+                      </div>
+                      <label style="text-align: center; font-weight: bold;">Vida inmovilziado material</label>
+                      <div class="vida-material">
+                        <div class="form-group"><input type="number" formControlName="vidaInmMaterialUno"
+                            class="form-control" placeholder="Año uno" /></div>
+                        <div class="form-group"><input type="number" formControlName="vidaInmMaterialDos"
+                            class="form-control" placeholder="Año dos" /></div>
+                        <div class="form-group"><input type="number" formControlName="vidaInmMaterialTres"
+                            class="form-control" placeholder="Año tres" /></div>
+                        <div class="form-group"><input type="number" formControlName="vidaInmMaterialCuatro"
+                            class="form-control" placeholder="Año cuatro" /></div>
+                        <div class="form-group"><input type="number" formControlName="vidaInmMaterialCinco"
+                            class="form-control" placeholder="Año cinco" /></div>
+                      </div>
+                      <button class="btn">Guardar política de inversión</button>
+                    </div>
+                  </form>
+                </div>
+              </mat-card-content>
+            </mat-tab>
+            <mat-tab label="Política de Financiación">
+              <mat-card-title style="text-align: center;">Política de financiación</mat-card-title>
+              <mat-card-content>
+                <div class="row">
+                  <form [formGroup]="formPoliticaFinanciacion" (ngSubmit)="onSubmitPoliticaFinanciacion()" style="width: 100%;">
+                    <div class="main" style="margin-top: 2%;">
+                      <label style="text-align: center; font-weight: bold;">Vencimiento de la deuda antigua</label>
+                      <div class="vencimiento-deuda-antigua">
+                        <div class="form-group"><input type="number" formControlName="vencimientoDeudaAntiguaUno"
+                            class="form-control" placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="vencimientoDeudaAntiguaDos"
+                            class="form-control" placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="vencimientoDeudaAntiguaTres"
+                            class="form-control" placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="vencimientoDeudaAntiguaCuatro"
+                            class="form-control" placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="vencimientoDeudaAntiguaCinco"
+                            class="form-control" placeholder="Año 5" /></div>
+                      </div>
+    
+                      <label style="text-align: center; font-weight: bold;">Interés deuda antigua</label>
+    
+                      <div class="interes-deuda-antigua">
+                        <div class="form-group"><input type="number" formControlName="interesDeudaAntiguaUno"
+                            class="form-control" placeholder="Año 1 (%)" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesDeudaAntiguaDos"
+                            class="form-control" placeholder="Año 2 (%)" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesDeudaAntiguaTres"
+                            class="form-control" placeholder="Año 3 (%)" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesDeudaAntiguaCuatro"
+                            class="form-control" placeholder="Año 4 (%)" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesDeudaAntiguaCinco"
+                            class="form-control" placeholder="Año 5 (%)" /></div>
+                      </div>
+    
+                      <label style="text-align: center; font-weight: bold;">Deuda nueva</label>
+    
+                      <div class="deuda-nueva">
+                        <div class="form-group"><input type="number" formControlName="deudaNuevaUno" class="form-control"
+                            placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="deudaNuevaDos" class="form-control"
+                            placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="deudaNuevaTres" class="form-control"
+                            placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="deudaNuevaCuatro" class="form-control"
+                            placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="deudaNuevaCinco" class="form-control"
+                            placeholder="Año 5" /></div>
+                      </div>
+    
+                      <label style="text-align: center; font-weight: bold;">Vencimiento de la deuda nueva</label>
+    
+                      <div class="vencimiento-deuda-nueva">
+                        <div class="form-group"><input type="number" formControlName="vencimientoDeudaNuevaUno"
+                            class="form-control" placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="vencimientoDeudaNuevaDos"
+                            class="form-control" placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="vencimientoDeudaNuevaTres"
+                            class="form-control" placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="vencimientoDeudaNuevaCuatro"
+                            class="form-control" placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="vencimientoDeudaNuevaCinco"
+                            class="form-control" placeholder="Año 5" /></div>
+                      </div>
+    
+                      <label style="text-align: center; font-weight: bold;">Interés de la deuda nueva</label>
+    
+                      <div class="interes-deuda-nueva">
+                        <div class="form-group"><input type="number" formControlName="interesDeudaNuevaUno"
+                            class="form-control" placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesDeudaNuevaDos"
+                            class="form-control" placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesDeudaNuevaTres"
+                            class="form-control" placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesDeudaNuevaCuatro"
+                            class="form-control" placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesDeudaNuevaCinco"
+                            class="form-control" placeholder="Año 5" /></div>
+                      </div>
+    
+                      <label style="text-align: center; font-weight: bold;">Ampliación de capital</label>
+    
+                      <div class="form-group"><input type="number" formControlName="ampliacionCapital" class="form-control"
+                          placeholder="Ampliación de capital" /></div>
+    
+                      <label style="text-align: center; font-weight: bold;">Prima de emisión</label>
+    
+                      <div class="form-group"><input type="number" formControlName="primaEmision" class="form-control"
+                          placeholder="Prima de emisión" /></div>
+                      <button class="btn">Guardar política de financiación</button>
+                    </div>
+                  </form>
+                </div>
+              </mat-card-content>
+            </mat-tab>
+            <mat-tab label="Estrategia de Circulante">
+              <mat-card-title style="text-align: center;">Estrategia de circulante</mat-card-title>
+              <mat-card-content>
+                <div class="row">
+                  <form [formGroup]="formEstrategiaCirculante" (ngSubmit)="onSubmitEstrategiaCirculante()" style="width: 100%;">
+                    <div class="main" style="margin-top: 2%;">
+                      <label style="text-align: center; font-weight: bold;">Periodo medio de cobro</label>
+                      <div class="periodo-medio-cobro">
+                        <div class="form-group"><input type="number" formControlName="periodoMedioCobroUno"
+                            class="form-control" placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioCobroDos"
+                            class="form-control" placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioCobroTres"
+                            class="form-control" placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioCobroCuatro"
+                            class="form-control" placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioCobroCinco"
+                            class="form-control" placeholder="Año 5" /></div>
+                      </div>
+                      <label style="text-align: center; font-weight: bold;">Periodo medio de existencia</label>
+                      <div class="periodo-medio-existencia">
+                        <div class="form-group"><input type="number" formControlName="periodoMedioExistenciaUno"
+                            class="form-control" placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioExistenciaDos"
+                            class="form-control" placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioExistenciaTres"
+                            class="form-control" placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioExistenciaCuatro"
+                            class="form-control" placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioExistenciaCinco"
+                            class="form-control" placeholder="Año 5" /></div>
+                      </div>
+                      <label style="text-align: center; font-weight: bold;">Periodo medio de pago</label>
+                      <div class="periodo-medio-pago">
+                        <div class="form-group"><input type="number" formControlName="periodoMedioPagoUno"
+                            class="form-control" placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioPagoDos"
+                            class="form-control" placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioPagoTres"
+                            class="form-control" placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioPagoCuatro"
+                            class="form-control" placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="periodoMedioPagoCinco"
+                            class="form-control" placeholder="Año 5" /></div>
+                      </div>
+                      <label style="text-align: center; font-weight: bold;">Objetivo de tesorería</label>
+                      <div class="ot">
+                        <div class="form-group"><input type="number" formControlName="otUno" class="form-control"
+                            placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="otDos" class="form-control"
+                            placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="otTres" class="form-control"
+                            placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="otCuatro" class="form-control"
+                            placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="otCinco" class="form-control"
+                            placeholder="Año 5" /></div>
+                      </div>
+                      <label style="text-align: center; font-weight: bold;">Interés de póliza de crédito</label>
+                      <div class="interes-poliza-credito">
+                        <div class="form-group"><input type="number" formControlName="interesPolizaCreditoUno"
+                            class="form-control" placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesPolizaCreditoDos"
+                            class="form-control" placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesPolizaCreditoTres"
+                            class="form-control" placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesPolizaCreditoCuatro"
+                            class="form-control" placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="interesPolizaCreditoCinco"
+                            class="form-control" placeholder="Año 5" /></div>
+                      </div>
+                      <label style="text-align: center; font-weight: bold;">Póliza de crédito</label>
+                      <div class="poliza-credito">
+                        <div class="form-group"><input type="number" formControlName="polizaCreditoUno" class="form-control"
+                            placeholder="Año 1" /></div>
+                        <div class="form-group"><input type="number" formControlName="polizaCreditoDos" class="form-control"
+                            placeholder="Año 2" /></div>
+                        <div class="form-group"><input type="number" formControlName="polizaCreditoTres"
+                            class="form-control" placeholder="Año 3" /></div>
+                        <div class="form-group"><input type="number" formControlName="polizaCreditoCuatro"
+                            class="form-control" placeholder="Año 4" /></div>
+                        <div class="form-group"><input type="number" formControlName="polizaCreditoCinco"
+                            class="form-control" placeholder="Año 5" /></div>
+                      </div>
+                      <label style="text-align: center; font-weight: bold;">Tasa impositiva</label>
+                      <div class="form-group"><input type="number" formControlName="tasaImpositiva" class="form-control"
+                          placeholder="Tasa impositiva" /></div>
+                      <button class="btn">Guardar estrategia de circulante</button>
+                    </div>
+                  </form>
+                </div>
+              </mat-card-content>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card>
+      </div>
+    </div>

@@ -1,0 +1,733 @@
+<div class="content p-5">
+  <mat-tab-group>
+    <mat-tab label="Balance">
+      <div class="inner-container p-4">
+        <table *ngIf="load" class="table">
+          <tr>
+            <th>Activo no corriente</th>
+            <td>{{balance['inmovilizadoInmaterial'] + balance['inmovilizadoMaterial'] +
+              balance['otrosActivosFijos']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inmovilizado inmaterial</th>
+            <td>{{balance['inmovilizadoInmaterial']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inmovilizado material</th>
+            <td>{{balance['inmovilizadoMaterial']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;padding-left: 5%;">Otros activos no
+              corrientes
+            </th>
+            <td>{{balance['otrosActivosFijos']}}€</td>
+          </tr>
+          <tr>
+            <th>Activo corriente</th>
+            <td>{{balance['existencias'] + balance['deudores'] + balance['otrosActivosLiquidos']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Existencias</th>
+            <td>{{balance['existencias']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Deudores</th>
+            <td>{{balance['deudores']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Otros activos líquidos</th>
+            <td>{{balance['otrosActivosLiquidos']}}€</td>
+          </tr>
+          <tr>
+            <th>Total activos</th>
+            <td>{{balance['existencias'] + balance['deudores'] + balance['otrosActivosLiquidos'] +
+              balance['inmovilizadoInmaterial'] + balance['inmovilizadoMaterial'] +
+              balance['otrosActivosFijos']}}€
+            </td>
+          </tr>
+          <tr>
+            <th>Fondos propios</th>
+            <td>{{balance['capitalSuscrito'] + balance['otrosFondosPropios']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Capital suscrito</th>
+            <td>{{balance['capitalSuscrito']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Otros fondos propios</th>
+            <td>{{balance['otrosFondosPropios']}}€</td>
+          </tr>
+          <tr>
+            <th>Pasivo no corriente</th>
+            <td>{{balance['acreedoresLP'] + balance['otrosPasivosFijos'] + balance['provisiones']}}€
+            </td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Deuda Nueva</th>
+            <td>{{balance['acreedoresLP']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Deuda antigua</th>
+            <td>{{balance['otrosPasivosFijos']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Provisiones</th>
+            <td>{{balance['provisiones']}}€</td>
+          </tr>
+          <tr>
+            <th>Pasivo corriente</th>
+            <td>{{balance['deudasFinancieras'] + balance['acreedoresComerciales'] +
+              balance['otrosPasivosLiquidos']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Deudas financieras</th>
+            <td>{{balance['deudasFinancieras']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Acreedores comerciales</th>
+            <td>{{balance['acreedoresComerciales']}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Otros pasivos líquidos</th>
+            <td>{{balance['otrosPasivosLiquidos']}}€</td>
+          </tr>
+          <tr>
+            <th>Total pasivo y capital propio</th>
+            <td>{{balance['capitalSuscrito'] + balance['otrosFondosPropios'] + balance['acreedoresLP'] +
+              balance['otrosPasivosFijos'] + balance['provisiones'] + balance['deudasFinancieras'] +
+              balance['acreedoresComerciales'] + balance['otrosPasivosLiquidos']}}€</td>
+          </tr>
+        </table>
+      </div>
+    </mat-tab>
+    <mat-tab label="Cuenta de Pérdidas y Ganancias">
+      <div class="inner-container p-4">
+        <table class="table">
+          <tr>
+            <th>Ingresos de explotación</th>
+            <td>{{cuentaPerdidasGanancias.importeNetoCifraVentas +
+              cuentaPerdidasGanancias.otrosIngresosExplotacion +
+              cuentaPerdidasGanancias.trppi}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Importe neto de cifra de ventas</th>
+            <td>{{cuentaPerdidasGanancias.importeNetoCifraVentas}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Otros ingresos de explotación</th>
+            <td>{{cuentaPerdidasGanancias.otrosIngresosExplotacion}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Trabajos realizados de la empresa para su
+              propio
+              inmovilizado (TRPPI)</th>
+            <td>{{cuentaPerdidasGanancias.trppi}}€</td>
+          </tr>
+          <tr>
+            <th>Costes de explotación</th>
+            <td>{{cuentaPerdidasGanancias.consumoMercaderiasMaterias +
+              cuentaPerdidasGanancias.gastoPersonal
+              +
+              cuentaPerdidasGanancias.otrosGastosExplotacion}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Consumo de mercaderías y materias</th>
+            <td>{{cuentaPerdidasGanancias.consumoMercaderiasMaterias}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Gasto de personal</th>
+            <td>{{cuentaPerdidasGanancias.gastoPersonal}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Otros gastos de explotación</th>
+            <td>{{cuentaPerdidasGanancias.otrosGastosExplotacion}}€</td>
+          </tr>
+          <tr>
+            <th>EBITDA</th>
+            <td>{{(cuentaPerdidasGanancias.importeNetoCifraVentas +
+              cuentaPerdidasGanancias.otrosIngresosExplotacion +
+              cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +
+              cuentaPerdidasGanancias.gastoPersonal +
+              cuentaPerdidasGanancias.otrosGastosExplotacion)}}€
+            </td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">CAT</th>
+            <td>{{cuentaPerdidasGanancias.cat}}€</td>
+          </tr>
+          <tr>
+            <th>BAIT</th>
+            <td>{{((cuentaPerdidasGanancias.importeNetoCifraVentas +
+              cuentaPerdidasGanancias.otrosIngresosExplotacion
+              + cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +
+              cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion))
+              -
+              (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi) }}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Ingresos financieros</th>
+            <td>{{cuentaPerdidasGanancias.ingresosFinancieros}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Gastos financieros</th>
+            <td>{{cuentaPerdidasGanancias.gastosFinancieros}}€</td>
+          </tr>
+
+          <tr>
+            <th>Resultado financiero</th>
+            <td>{{cuentaPerdidasGanancias.ingresosFinancieros -
+              cuentaPerdidasGanancias.gastosFinancieros}}€
+            </td>
+          </tr>
+
+          <tr>
+            <th>Resultados ordinarios antes de impuestos</th>
+            <td>{{(cuentaPerdidasGanancias.ingresosFinancieros -
+              cuentaPerdidasGanancias.gastosFinancieros)
+              +
+              (((cuentaPerdidasGanancias.importeNetoCifraVentas +
+              cuentaPerdidasGanancias.otrosIngresosExplotacion +
+              cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +
+              cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion))
+              -
+              (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))}}€</td>
+          </tr>
+
+          <tr>
+            <th>Impuestos sobre sociedades</th>
+            <td
+              *ngIf="(cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) + (((cuentaPerdidasGanancias.importeNetoCifraVentas + cuentaPerdidasGanancias.otrosIngresosExplotacion + cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias + cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) - (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))>0">
+              {{0.25*((cuentaPerdidasGanancias.ingresosFinancieros -
+              cuentaPerdidasGanancias.gastosFinancieros) +
+              (((cuentaPerdidasGanancias.importeNetoCifraVentas +
+              cuentaPerdidasGanancias.otrosIngresosExplotacion +
+              cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +
+              cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion))
+              -
+              (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi)))}}€
+            </td>
+            <td
+              *ngIf="(cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) + (((cuentaPerdidasGanancias.importeNetoCifraVentas + cuentaPerdidasGanancias.otrosIngresosExplotacion + cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias + cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) - (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))<=0">
+              {{0*((cuentaPerdidasGanancias.ingresosFinancieros -
+              cuentaPerdidasGanancias.gastosFinancieros) +
+              (((cuentaPerdidasGanancias.importeNetoCifraVentas +
+              cuentaPerdidasGanancias.otrosIngresosExplotacion +
+              cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +
+              cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion))
+              -
+              (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi)))}}€
+            </td>
+          </tr>
+
+          <tr>
+            <th>Resultado del ejercicio</th>
+            <td
+              *ngIf="(cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) + (((cuentaPerdidasGanancias.importeNetoCifraVentas + cuentaPerdidasGanancias.otrosIngresosExplotacion + cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias + cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) - (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))<=0">
+              {{(cuentaPerdidasGanancias.ingresosFinancieros -
+              cuentaPerdidasGanancias.gastosFinancieros)
+              +
+              (((cuentaPerdidasGanancias.importeNetoCifraVentas +
+              cuentaPerdidasGanancias.otrosIngresosExplotacion +
+              cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +
+              cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion))
+              -
+              (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi)) -
+              (0*((cuentaPerdidasGanancias.ingresosFinancieros -
+              cuentaPerdidasGanancias.gastosFinancieros) +
+              (((cuentaPerdidasGanancias.importeNetoCifraVentas +
+              cuentaPerdidasGanancias.otrosIngresosExplotacion +
+              cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +
+              cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion))
+              -
+              (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))))}}€
+            </td>
+            <td
+              *ngIf="(cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) + (((cuentaPerdidasGanancias.importeNetoCifraVentas + cuentaPerdidasGanancias.otrosIngresosExplotacion + cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias + cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) - (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))>0">
+              {{(cuentaPerdidasGanancias.ingresosFinancieros -
+              cuentaPerdidasGanancias.gastosFinancieros)
+              +
+              (((cuentaPerdidasGanancias.importeNetoCifraVentas +
+              cuentaPerdidasGanancias.otrosIngresosExplotacion +
+              cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +
+              cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion))
+              -
+              (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi)) -
+              (0.25*((cuentaPerdidasGanancias.ingresosFinancieros -
+              cuentaPerdidasGanancias.gastosFinancieros) +
+              (((cuentaPerdidasGanancias.importeNetoCifraVentas +
+              cuentaPerdidasGanancias.otrosIngresosExplotacion +
+              cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +
+              cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion))
+              -
+              (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))))}}€
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </mat-tab>
+    <mat-tab label="Estrategia de Mercado">
+
+      <div class="inner-container p-4">
+        <table class="table table-striped">
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Objetivo de ventas para los siguiente cinco años</th>
+            <td>{{estrategiaMercado.objetivoVentasAnyoCinco}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Ventas alcanzadas en el año uno</th>
+            <td>{{estrategiaMercado.ventasAlcanzadasUno}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Ventas alcanzadas en el año dos</th>
+            <td>{{estrategiaMercado.ventasAlcanzadasDos}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Ventas alcanzadas en el año tres</th>
+            <td>{{estrategiaMercado.ventasAlcanzadasTres}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Ventas alcanzadas en el año cuatro</th>
+            <td>{{estrategiaMercado.ventasAlcanzadasCuatro}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Ventas alcanzadas en el año cinco</th>
+            <td>{{estrategiaMercado.ventasAlcanzadasCinco}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Número de empleados en el año uno</th>
+            <td>{{estrategiaMercado.numeroEmpleadosUno}} empleados</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Número de empleados en el año dos</th>
+            <td>{{estrategiaMercado.numeroEmpleadosDos}} empleados</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Número de empleados en el año tres</th>
+            <td>{{estrategiaMercado.numeroEmpleadosTres}} empleados</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Número de empleados en el año cuatro</th>
+            <td>{{estrategiaMercado.numeroEmpleadosCuatro}} empleados</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Número de empleados en el año cinco</th>
+            <td>{{estrategiaMercado.numeroEmpleadosCinco}} empleados</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Gasto por empleado en el año uno</th>
+            <td>{{estrategiaMercado.gastoEmpleadoUno}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Gasto por empleado en el año dos</th>
+            <td>{{estrategiaMercado.gastoEmpleadoDos}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Gasto por empleado en el año tres</th>
+            <td>{{estrategiaMercado.gastoEmpleadoTres}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Gasto por empleado en el año cuatro</th>
+            <td>{{estrategiaMercado.gastoEmpleadoCuatro}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Gasto por empleado en el año cinco</th>
+            <td>{{estrategiaMercado.gastoEmpleadoCinco}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Aprovisionamiento por ventas en el año uno</th>
+            <td>{{estrategiaMercado.aprovisionamientoPorVentasUno}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Aprovisionamiento por ventas en el año dos</th>
+            <td>{{estrategiaMercado.aprovisionamientoPorVentasDos}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Aprovisionamiento por ventas en el año tres</th>
+            <td>{{estrategiaMercado.aprovisionamientoPorVentasTres}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Aprovisionamiento por ventas en el año cuatro</th>
+            <td>{{estrategiaMercado.aprovisionamientoPorVentasCuatro}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Aprovisionamiento por ventas en el año cinco</th>
+            <td>{{estrategiaMercado.aprovisionamientoPorVentasCinco}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Otros gastos de explotación por ventas en el año uno
+            </th>
+            <td>{{estrategiaMercado.otrosGastosExplotacionPorVentasUno}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Otros gastos de explotación por ventas en el año dos
+            </th>
+            <td>{{estrategiaMercado.otrosGastosExplotacionPorVentasDos}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Otros gastos de explotación por ventas en el año tres
+            </th>
+            <td>{{estrategiaMercado.otrosGastosExplotacionPorVentasTres}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Otros gastos de explotación por ventas en el año
+              cuatro</th>
+            <td>{{estrategiaMercado.otrosGastosExplotacionPorVentasCuatro}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Otros gastos de explotación por ventas en el año cinco
+            </th>
+            <td>{{estrategiaMercado.otrosGastosExplotacionPorVentasCinco}}%</td>
+          </tr>
+        </table>
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Política de Inversión">
+
+      <div class="inner-container p-4">
+        <table class="table table-striped">
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inversión en inmovilizado inmaterial en el año uno
+            </th>
+            <td>{{politicaInversion.inversionInmovilizadoInmaterialUno}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inversión en inmovilizado inmaterial en el año dos
+            </th>
+            <td>{{politicaInversion.inversionInmovilizadoInmaterialDos}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inversión en inmovilizado inmaterial en el año tres
+            </th>
+            <td>{{politicaInversion.inversionInmovilizadoInmaterialTres}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inversión en inmovilizado inmaterial en el año cuatro
+            </th>
+            <td>{{politicaInversion.inversionInmovilizadoInmaterialCuatro}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inversión en inmovilizado inmaterial en el año cinco
+            </th>
+            <td>{{politicaInversion.inversionInmovilizadoInmaterialCinco}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vida del inmovilizado inmaterial en el año uno</th>
+            <td>{{politicaInversion.vidaInmInmaterialUno}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vida del inmovilizado inmaterial en el año dos</th>
+            <td>{{politicaInversion.vidaInmInmaterialDos}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vida del inmovilizado inmaterial en el año tres</th>
+            <td>{{politicaInversion.vidaInmInmaterialTres}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vida del inmovilizado inmaterial en el año cuatro</th>
+            <td>{{politicaInversion.vidaInmInmaterialCuatro}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vida del inmovilizado inmaterial en el año cinco</th>
+            <td>{{politicaInversion.vidaInmInmaterialCinco}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inversión en inmovilizado material en el año uno</th>
+            <td>{{politicaInversion.inversionInmovilizadoMaterialUno}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inversión en inmovilizado material en el año dos</th>
+            <td>{{politicaInversion.inversionInmovilizadoMaterialDos}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inversión en inmovilizado material en el año tres</th>
+            <td>{{politicaInversion.inversionInmovilizadoMaterialTres}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inversión en inmovilizado material en el año cuatro
+            </th>
+            <td>{{politicaInversion.inversionInmovilizadoMaterialCuatro}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Inversión en inmovilizado material en el año cinco
+            </th>
+            <td>{{politicaInversion.inversionInmovilizadoMaterialCinco}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vida del inmovilizado material en el año uno</th>
+            <td>{{politicaInversion.vidaInmMaterialUno}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vida del inmovilizado material en el año dos</th>
+            <td>{{politicaInversion.vidaInmMaterialDos}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vida del inmovilizado material en el año tres</th>
+            <td>{{politicaInversion.vidaInmMaterialTres}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vida del inmovilizado material en el año cuatro</th>
+            <td>{{politicaInversion.vidaInmMaterialCuatro}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vida del inmovilizado material en el año cinco</th>
+            <td>{{politicaInversion.vidaInmMaterialCinco}} años</td>
+          </tr>
+        </table>
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Política de Financiación">
+
+      <div class="inner-container p-4">
+        <table class="table table-striped">
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vencimiento de la deuda antigua</th>
+            <td>{{politicaFinanciacion.vencimientoDeudaAntiguaUno}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vencimiento de la deuda antigua</th>
+            <td>{{politicaFinanciacion.vencimientoDeudaAntiguaDos}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vencimiento de la deuda antigua</th>
+            <td>{{politicaFinanciacion.vencimientoDeudaAntiguaTres}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vencimiento de la deuda antigua</th>
+            <td>{{politicaFinanciacion.vencimientoDeudaAntiguaCuatro}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vencimiento de la deuda antigua</th>
+            <td>{{politicaFinanciacion.vencimientoDeudaAntiguaCinco}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la deuda antigua</th>
+            <td>{{politicaFinanciacion.interesDeudaAntiguaUno}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la deuda antigua</th>
+            <td>{{politicaFinanciacion.interesDeudaAntiguaDos}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la deuda antigua</th>
+            <td>{{politicaFinanciacion.interesDeudaAntiguaTres}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la deuda antigua</th>
+            <td>{{politicaFinanciacion.interesDeudaAntiguaCuatro}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la deuda antigua</th>
+            <td>{{politicaFinanciacion.interesDeudaAntiguaCinco}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Deuda nueva</th>
+            <td>{{politicaFinanciacion.deudaNuevaUno}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Deuda nueva</th>
+            <td>{{politicaFinanciacion.deudaNuevaDos}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Deuda nueva</th>
+            <td>{{politicaFinanciacion.deudaNuevaTres}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Deuda nueva</th>
+            <td>{{politicaFinanciacion.deudaNuevaCuatro}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Deuda nueva</th>
+            <td>{{politicaFinanciacion.deudaNuevaCinco}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vencimiento de la deuda nueva</th>
+            <td>{{politicaFinanciacion.vencimientoDeudaNuevaUno}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vencimiento de la deuda nueva</th>
+            <td>{{politicaFinanciacion.vencimientoDeudaNuevaDos}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vencimiento de la deuda nueva</th>
+            <td>{{politicaFinanciacion.vencimientoDeudaNuevaTres}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vencimiento de la deuda nueva</th>
+            <td>{{politicaFinanciacion.vencimientoDeudaNuevaCuatro}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Vencimiento de la deuda nueva</th>
+            <td>{{politicaFinanciacion.vencimientoDeudaNuevaCinco}} años</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la deuda nueva</th>
+            <td>{{politicaFinanciacion.interesDeudaNuevaUno}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la deuda nueva</th>
+            <td>{{politicaFinanciacion.interesDeudaNuevaDos}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la deuda nueva</th>
+            <td>{{politicaFinanciacion.interesDeudaNuevaTres}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la deuda nueva</th>
+            <td>{{politicaFinanciacion.interesDeudaNuevaCuatro}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la deuda nueva</th>
+            <td>{{politicaFinanciacion.interesDeudaNuevaCinco}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Ampliación de capital</th>
+            <td>{{politicaFinanciacion.ampliacionCapital}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Prima de emisión</th>
+            <td>{{politicaFinanciacion.primaEmision}}%</td>
+          </tr>
+        </table>
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Estrategia de Circulante">
+      <div class="iner-container p-4">
+        <table class="table table-striped">
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de cobro en el año uno</th>
+            <td>{{estrategiaCirculante.periodoMedioCobroUno}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de cobro en el año dos</th>
+            <td>{{estrategiaCirculante.periodoMedioCobroDos}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de cobro en el año tres</th>
+            <td>{{estrategiaCirculante.periodoMedioCobroTres}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de cobro en el año cuatro</th>
+            <td>{{estrategiaCirculante.periodoMedioCobroCuatro}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de cobro en el año cinco</th>
+            <td>{{estrategiaCirculante.periodoMedioCobroCinco}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de existencia en el año uno</th>
+            <td>{{estrategiaCirculante.periodoMedioExistenciaUno}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de existencia en el año dos</th>
+            <td>{{estrategiaCirculante.periodoMedioExistenciaDos}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de existencia en el año tres</th>
+            <td>{{estrategiaCirculante.periodoMedioExistenciaTres}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de existencia en el año cuatro</th>
+            <td>{{estrategiaCirculante.periodoMedioExistenciaCuatro}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de existencia en el año cinco</th>
+            <td>{{estrategiaCirculante.periodoMedioExistenciaCinco}} días</td>
+          </tr>
+
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de pago en el año uno</th>
+            <td>{{estrategiaCirculante.periodoMedioPagoUno}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de pago en el año dos</th>
+            <td>{{estrategiaCirculante.periodoMedioPagoDos}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de pago en el año tres</th>
+            <td>{{estrategiaCirculante.periodoMedioPagoTres}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de pago en el año cuatro</th>
+            <td>{{estrategiaCirculante.periodoMedioPagoCuatro}} días</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Periodo medio de pago en el año cinco</th>
+            <td>{{estrategiaCirculante.periodoMedioPagoCinco}} días</td>
+          </tr>
+
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Objetivo tesorería en el año uno</th>
+            <td>{{estrategiaCirculante.otUno}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Objetivo tesorería en el año dos</th>
+            <td>{{estrategiaCirculante.otDos}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Objetivo tesorería en el año tres</th>
+            <td>{{estrategiaCirculante.otTres}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Objetivo tesorería en el año cuatro</th>
+            <td>{{estrategiaCirculante.otCuatro}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Objetivo tesorería en el año cinco</th>
+            <td>{{estrategiaCirculante.otCinco}}€</td>
+          </tr>
+
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la póliza de crédito en el año uno</th>
+            <td>{{estrategiaCirculante.interesPolizaCreditoUno}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la póliza de crédito en el año dos</th>
+            <td>{{estrategiaCirculante.interesPolizaCreditoDos}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la póliza de crédito en el año tres</th>
+            <td>{{estrategiaCirculante.interesPolizaCreditoTres}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la póliza de crédito en el año cuatro</th>
+            <td>{{estrategiaCirculante.interesPolizaCreditoCuatro}}%</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Interés de la póliza de crédito en el año cinco</th>
+            <td>{{estrategiaCirculante.interesPolizaCreditoCinco}}%</td>
+          </tr>
+
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Póliza de crédito en el año uno</th>
+            <td>{{estrategiaCirculante.polizaCreditoUno}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Póliza de crédito en el año dos</th>
+            <td>{{estrategiaCirculante.polizaCreditoDos}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Póliza de crédito en el año tres</th>
+            <td>{{estrategiaCirculante.polizaCreditoTres}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Póliza de crédito en el año cuatro</th>
+            <td>{{estrategiaCirculante.polizaCreditoCuatro}}€</td>
+          </tr>
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Póliza de crédito en el año cinco</th>
+            <td>{{estrategiaCirculante.polizaCreditoCinco}}€</td>
+          </tr>
+
+          <tr>
+            <th style="font-weight: normal;padding-left: 5%;">Tasa impositiva</th>
+            <td>{{estrategiaCirculante.tasaImpositiva}}%</td>
+          </tr>
+        </table>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

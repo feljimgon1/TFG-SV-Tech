@@ -1,0 +1,197 @@
+<div class="plan-grid pb-3">
+  <ng-container *ngFor="let item of planFinanciero">
+    <div (click)="redirect(item.path)" [ngClass]="(item.name=='Balance')&&pasivo!=activo?'activo-pasivo-warning':(item.name=='Política de Inversión'?'active-plan-item':'plan-item')">{{item.name}}</div>
+  </ng-container>
+</div>
+
+<div class="col resultados mb-5 mt-4"  routerLink="/resultados">
+  Resultados
+</div>
+
+<mat-tab-group class="py-3 pb-5" mat-align-tabs="center">
+  <mat-tab label="Formulario">
+    <div class="col pt-3">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <label style="font-weight:600;">Inversión del inmovilizado inmaterial</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Inversión del inmovilizado inmaterial</mat-label>
+                <input formControlName="inversionInmovilizadoInmaterialUno" matInput>
+                <mat-hint class="mat-hint">Inversión del inmovilizado inmaterial</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <label style="text-align: center; font-weight: bold;">Vida inmovilizado inmaterial</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="vidaInmInmaterialUno" matInput>
+                <mat-hint class="mat-hint">Vida del inmovilizado inmaterial en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="vidaInmInmaterialDos" matInput>
+                <mat-hint class="mat-hint">Vida del inmovilizado inmaterial en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="vidaInmInmaterialTres" matInput>
+                <mat-hint class="mat-hint">Vida del inmovilizado inmaterial en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="vidaInmInmaterialCuatro" matInput>
+                <mat-hint class="mat-hint">Vida del inmovilizado inmaterial en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="vidaInmInmaterialCinco" matInput>
+                <mat-hint class="mat-hint">Vida del inmovilizado inmaterial en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <label style="font-weight:600;">Inversión del inmovilizado material</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Inversión del inmovilizado material</mat-label>
+                <input formControlName="inversionInmovilizadoMaterialUno" matInput>
+                <mat-hint class="mat-hint">Inversión del inmovilizado material en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <label style="text-align: center; font-weight: bold;">Vida inmovilziado material</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="vidaInmMaterialUno" matInput>
+                <mat-hint class="mat-hint">Vida del inmovilizado material en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="vidaInmMaterialDos" matInput>
+                <mat-hint class="mat-hint">Vida del inmovilizado material en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="vidaInmMaterialTres" matInput>
+                <mat-hint class="mat-hint">Vida del inmovilizado material en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="vidaInmMaterialCuatro" matInput>
+                <mat-hint class="mat-hint">Vida del inmovilizado material en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="vidaInmMaterialCinco" matInput>
+                <mat-hint class="mat-hint">Vida del inmovilizado material en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <button class="btn">Guardar política de inversión</button>
+      </form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Tabla de resultados">
+
+    <div class="col pt-3">
+      <div class="row r-results">
+        <div class="col c1-results">Inversión en inmovilizado inmaterial</div>
+        <div class="col c2-results">{{politicaInversion.inversionInmovilizadoInmaterialUno | number:'1.2-2':'es-Es'}}€</div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Vida del inmovilizado inmaterial por año (en años)</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{politicaInversion.vidaInmInmaterialUno | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaInversion.vidaInmInmaterialDos | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaInversion.vidaInmInmaterialTres | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaInversion.vidaInmInmaterialCuatro | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaInversion.vidaInmInmaterialCinco | number:'1.2-2':'es-Es'}}%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Inversión en inmovilizado material</div>
+        <div class="col c2-results">{{politicaInversion.inversionInmovilizadoMaterialUno | number:'1.2-2':'es-Es'}}€</div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Vida del inmovilizado material por año (en años)</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{politicaInversion.vidaInmMaterialUno | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaInversion.vidaInmMaterialDos | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaInversion.vidaInmMaterialTres | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaInversion.vidaInmMaterialCuatro | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{politicaInversion.vidaInmMaterialCinco | number:'1.2-2':'es-Es'}}%</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </mat-tab>
+</mat-tab-group>

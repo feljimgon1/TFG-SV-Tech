@@ -1,0 +1,59 @@
+<ng-container *ngIf="authService.getRole()=='ADMIN'; else PREMIUM">
+    <div class="row main-container">
+        <div class="col user-list">
+            <ng-container *ngFor="let user of users; let index = index">
+                <ng-container *ngIf="user.rol=='PREMIUM'">
+                    <p [ngClass]="(index==0)?'user p-3':'user pb-3 px-3'" (click)="selectUserHandler(user._id)">{{user.name + " " + user.surname}}</p>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="col-6 card">
+            <div class="selected-user">
+                <ng-container *ngIf="selectedUser;else noUserSelected">
+                    <div class="card-header p-3">
+                        {{selectedUser.name}}
+                    </div>
+                    <div class="card-body" id="chat-body">
+                        <div class="chat-body">
+                            <div *ngFor="let item of messageArray" [ngClass]="item.srcUserId==currentUser?._id?'same-user':'other-user'">
+                                <p class="message-container">{{item.message}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer p-3">
+                        <form>
+                            <input type="text" class="form-control" placeholder="Mensaje..." [(ngModel)]="messageText" [ngModelOptions]="{standalone: true}">
+                            <button class="btn" (click)="sendMessage()">Send</button>
+                        </form>
+                    </div>
+                </ng-container>
+                <ng-template #noUserSelected>
+                    <h4 class="p-4">Seleccione un usuario para chatear...</h4>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #PREMIUM>
+    <div class="container-experto">
+        <div class="card card-experto">
+            <div class="card-header p-3">
+                Félix Jiménez Naharro
+            </div>
+            <div class="card-body card-body-experto" id="chat-body">
+                <div class="chat-body">
+                    <div *ngFor="let item of messageArray" [ngClass]="item.srcUserId==currentUser?._id?'same-user':'other-user'">
+                      <p class="message-container">{{item.message}}</p>
+                    </div>
+                  </div>
+            </div>
+            <div class="footer-experto p-3">
+                <form id="form" class="card-footer text-muted input-group" >
+                    <input [(ngModel)]="messageText" type="text" placeholder="Mensaje..." class="form-control" [ngModelOptions]="{standalone: true}">
+                    <button class="btn" (click)="sendMessage()">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>

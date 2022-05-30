@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="login" style="padding: 7%;">
+    <div class="alert-container" style="margin-top:-2%;">
+      <div id="alert" class="show-hide-message">
+        <div class="alert-message" [ngClass]="messageClass">
+          {{ message }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" formControlName="email" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && fields['email'].errors }" placeholder="Correo Electrónico" />
+          <div *ngIf="submitted && fields['email'].errors" class="invalid-feedback">
+            <div *ngIf="fields['email'].errors['required']">El campo del correo electrónico es obligatorio</div>
+            <div *ngIf="fields['email'].errors['email']">Introduzca un correo electrónico válido</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && fields['password'].errors }" placeholder="Contraseña" />
+          <div *ngIf="submitted && fields['password'].errors" class="invalid-feedback">
+            <div *ngIf="fields['password'].errors['required']">Se debe proporcionar una contraseña</div>
+          </div>
+        </div>
+        <div class="form-group" id="button-form">
+          <button [disabled]="processing" class="btn">Iniciar Sesión</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

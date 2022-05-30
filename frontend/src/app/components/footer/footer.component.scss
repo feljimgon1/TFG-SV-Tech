@@ -1,0 +1,30 @@
+footer {
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  bottom: 0px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.even-columns {
+  display: flex;
+}
+
+.column {
+  flex-basis: 100%;
+}
+
+.column > p {
+  text-align: center;
+  color: #000;
+}
+
+@media only screen and (max-width: 527px) {
+  .even-columns {
+    display: block;
+    align-content: center;
+  }
+  .column > p {
+    text-align: center;
+  }
+}

@@ -1,0 +1,30 @@
+###
+GET http://localhost:3000/api/users
+###
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "name": "Francisco Javier",
+    "surname": "Jiménez González",
+    "email": "a@gmail",
+    "password": "fran"
+}
+###
+GET http://localhost:3000/api/users/6092d150c7d50b76a8d3549e
+
+###
+DELETE http://localhost:3000/api/users/6092d150c7d50b76a8d3549e
+
+###
+PUT  http://localhost:3000/api/users/6092d1e76168440c688ffa61
+Content-Type: application/json
+
+{
+    "name": "Félix",
+    "surname": "Jiménez González",
+    "email": "Pruebapremium",
+    "password": "pruebaPremium",
+    "rol": "Premium"
+}
+

@@ -1,0 +1,28 @@
+form{
+    width: 50%;
+    margin: 0 auto;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+table{
+    width: 65%;
+    margin: 0 auto;
+}
+
+.alert{
+    width: 75%;
+    margin: 0 auto;
+}
+
+.btn{
+    border: 1px solid black;
+    transition: .3;
+}
+
+.btn:hover{
+    background-color: black;
+    color: white;
+}

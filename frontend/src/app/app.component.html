@@ -1,0 +1,13 @@
+<body>
+    <app-navbar class="navbar"></app-navbar>
+    <ng-container *ngIf="!expired;else tokenExpired">
+        <router-outlet></router-outlet>
+    </ng-container>
+    <ng-template #tokenExpired>
+        <div class="expired" style="height: 100vh; margin: 0 auto; display: flex; justify-content: center; align-items: center;">
+            <h3>Su sesión ha expirado.</h3>
+            <h3>Espere unos segundos...</h3>
+        </div>
+    </ng-template>
+    <app-footer></app-footer>
+</body>

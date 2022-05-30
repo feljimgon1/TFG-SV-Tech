@@ -1,0 +1,279 @@
+
+
+<div class="void-content" *ngIf="balancesPrevisionales.length==0">
+    <h3 style="color: e0e0e0e0;">Esto puede tardar un poco...</h3>
+    <img class="loading" src="assets/img/Loading.gif" alt="">
+</div>
+
+<div class="content">
+    <div class="container" *ngIf="balancesPrevisionales.length!=0">
+        <div class="volver mb-4" routerLink="/balance">
+            Volver a las tablas
+        </div>
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Cuenta de pérdidas y ganancias previsionales">
+                <div class="btn-container p-2">
+                    <div class="btn" (click)="exportCuentaPerdidasGananciasExcel()">Exportar</div>
+                </div>
+                <table class="table table-striped" id="cuentaPerdidasGananciasPrevisionales">
+                    <thead>
+                        <tr>
+                            <th>Cuenta de Pérdidas y Ganancias</th>
+                            <th>Año 1</th>
+                            <th>Año 2</th>
+                            <th>Año 3</th>
+                            <th>Año 4</th>
+                            <th>Año 5</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cuentaHeader of cuentaPerdidasGananciasPrevisionales; let i = index">
+                            <ng-container *ngIf="
+                            (headersCuentaPerdidasGanancias[i]=='Importe neto cifra de ventas')||
+                            (headersCuentaPerdidasGanancias[i]=='EBITDA')||
+                            (headersCuentaPerdidasGanancias[i]=='BAIT')||
+                            (headersCuentaPerdidasGanancias[i]=='Resultados financieros')||
+                            (headersCuentaPerdidasGanancias[i]=='Resultados ordinarios antes de impuestos')||
+                            (headersCuentaPerdidasGanancias[i]=='Resultado del ejercicio')
+                            ;else cabecera">
+                                <td class="pl-4" style="font-weight: bold;">{{headersCuentaPerdidasGanancias[i]}}</td>
+                                <td style="font-weight: bold;"
+                                    *ngFor="let cuentaContent of cuentaPerdidasGananciasPrevisionales[i]; let j = index">
+                                    {{cuentaContent | number:'1.2-2':'es-Es'}}€
+                                </td>
+                            </ng-container>
+                            <ng-template #cabecera>
+                                <td>{{headersCuentaPerdidasGanancias[i]}}</td>
+                                <td style="text-align: left;"
+                                    *ngFor="let cuentaContent of cuentaPerdidasGananciasPrevisionales[i]; let j = index">
+                                    {{cuentaContent | number:'1.2-2':'es-Es'}}€
+                                </td>
+                            </ng-template>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-tab>
+            <mat-tab label="Balances previsionales">
+                <div class="btn-container p-2">
+                    <div class="btn" (click)="exportBalancesExcel()">Exportar</div>
+                </div>
+                <table class="table table-striped" id="balancesPrevisionales">
+                    <thead>
+                        <tr>
+                            <th>Balances Previsionales</th>
+                            <th>Año actual</th>
+                            <th>Año 1</th>
+                            <th>Año 2</th>
+                            <th>Año 3</th>
+                            <th>Año 4</th>
+                            <th>Año 5</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="header pl-4">Activo no corriente</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][0] + balancesPrevisionales[1][0] +
+                                balancesPrevisionales[2][0] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][1] + balancesPrevisionales[1][1] +
+                                balancesPrevisionales[2][0] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][2] + balancesPrevisionales[1][2] +
+                                balancesPrevisionales[2][0] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][3] + balancesPrevisionales[1][3] +
+                                balancesPrevisionales[2][0] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][4] + balancesPrevisionales[1][4] +
+                                balancesPrevisionales[2][0] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][5] + balancesPrevisionales[1][5] +
+                                balancesPrevisionales[2][0] | number:'1.2-2':'es-Es'}}€</td>
+
+                        </tr>
+                        <tr *ngFor="let i of [0,1,2]">
+                            <td>{{headersBalance[i]}}</td>
+                            <ng-container *ngIf="i==2; else normalCase">
+                                <td *ngFor="let j of [0,1,2,3,4,5]">{{balancesPrevisionales[i][0] |
+                                    number:'1.2-2':'es-Es'}}€</td>
+                            </ng-container>
+                            <ng-template #normalCase>
+                                <td *ngFor="let balance of balancesPrevisionales[i]">
+                                    {{balance | number:'1.2-2':'es-Es'}}€
+                                </td>
+                            </ng-template>
+                        </tr>
+                        <tr>
+                            <td class="header pl-4">Activo corriente</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[3][0] + balancesPrevisionales[4][0] +
+                                balancesPrevisionales[5][0] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[3][1] + balancesPrevisionales[4][1] +
+                                balancesPrevisionales[5][1] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[3][2] + balancesPrevisionales[4][2] +
+                                balancesPrevisionales[5][2] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[3][3] + balancesPrevisionales[4][3] +
+                                balancesPrevisionales[5][3] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[3][4] + balancesPrevisionales[4][4] +
+                                balancesPrevisionales[5][4] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[3][5] + balancesPrevisionales[4][5] +
+                                balancesPrevisionales[5][5] | number:'1.2-2':'es-Es'}}€</td>
+                        </tr>
+
+                        <tr *ngFor="let i of [3,4,5]">
+                            <td>{{headersBalance[i]}}</td>
+                            <td *ngFor="let balance of balancesPrevisionales[i]">
+                                {{balance | number:'1.2-2':'es-Es'}}€
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="header pl-4">Total Activos</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][0] + balancesPrevisionales[1][0] +
+                                balancesPrevisionales[2][0] + balancesPrevisionales[3][0] + balancesPrevisionales[4][0]
+                                + balancesPrevisionales[5][0] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][1] + balancesPrevisionales[1][1] +
+                                balancesPrevisionales[2][0] + balancesPrevisionales[3][1] + balancesPrevisionales[4][1]
+                                + balancesPrevisionales[5][1] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][2] + balancesPrevisionales[1][2] +
+                                balancesPrevisionales[2][0] + balancesPrevisionales[3][2] + balancesPrevisionales[4][2]
+                                + balancesPrevisionales[5][2] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][3] + balancesPrevisionales[1][3] +
+                                balancesPrevisionales[2][0] + balancesPrevisionales[3][3] + balancesPrevisionales[4][3]
+                                + balancesPrevisionales[5][3] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][4] + balancesPrevisionales[1][4] +
+                                balancesPrevisionales[2][0] + balancesPrevisionales[3][4] + balancesPrevisionales[4][4]
+                                + balancesPrevisionales[5][4] | number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[0][5] + balancesPrevisionales[1][5] +
+                                balancesPrevisionales[2][0] + balancesPrevisionales[3][5] + balancesPrevisionales[4][5]
+                                + balancesPrevisionales[5][5] | number:'1.2-2':'es-Es'}}€</td>
+                        </tr>
+
+                        <tr>
+                            <td class="header pl-4">Fondos Propios</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][0] + balancesPrevisionales[7][0] |
+                                number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][1] + balancesPrevisionales[7][1] |
+                                number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][2] + balancesPrevisionales[7][2] |
+                                number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][3] + balancesPrevisionales[7][3] |
+                                number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][4] + balancesPrevisionales[7][4] |
+                                number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][5] + balancesPrevisionales[7][5] |
+                                number:'1.2-2':'es-Es'}}€</td>
+                        </tr>
+
+                        <tr *ngFor="let i of [6,7]">
+                            <td>{{headersBalance[i]}}</td>
+                            <td *ngFor="let balance of balancesPrevisionales[i]">
+                                {{balance | number:'1.2-2':'es-Es'}}€
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="header pl-4">Pasivo No Corriente</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[8][0] + balancesPrevisionales[9][0] +
+                                balancesPrevisionales[10][0] | number:'1.2-2':'es-Es'}}</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[8][1] + balancesPrevisionales[9][1] +
+                                balancesPrevisionales[10][0] | number:'1.2-2':'es-Es'}}</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[8][2] + balancesPrevisionales[9][2] +
+                                balancesPrevisionales[10][0] | number:'1.2-2':'es-Es'}}</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[8][3] + balancesPrevisionales[9][3] +
+                                balancesPrevisionales[10][0] | number:'1.2-2':'es-Es'}}</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[8][4] + balancesPrevisionales[9][4] +
+                                balancesPrevisionales[10][0] | number:'1.2-2':'es-Es'}}</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[8][5] + balancesPrevisionales[9][5] +
+                                balancesPrevisionales[10][0] | number:'1.2-2':'es-Es'}}</td>
+                        </tr>
+
+                        <tr *ngFor="let i of [8,9,10]">
+                            <td>{{headersBalance[i]}}</td>
+                            <ng-container *ngIf="i==10; else normalCase">
+                                <td *ngFor="let j of [0,1,2,3,4,5]">{{balancesPrevisionales[i][0] |
+                                    number:'1.2-2':'es-Es'}}€</td>
+                            </ng-container>
+                            <ng-template #normalCase>
+                                <td *ngFor="let balance of balancesPrevisionales[i]">
+                                    {{balance | number:'1.2-2':'es-Es'}}€
+                                </td>
+                            </ng-template>
+                        </tr>
+
+                        <tr>
+                            <td class="header pl-4">Pasivo Corriente</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[11][0] + balancesPrevisionales[12][0]
+                                + balancesPrevisionales[13][0]| number:'1.2-2':'es-Es'}}</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[11][1] + balancesPrevisionales[12][1]
+                                + balancesPrevisionales[13][1]| number:'1.2-2':'es-Es'}}</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[11][2] + balancesPrevisionales[12][2]
+                                + balancesPrevisionales[13][2]| number:'1.2-2':'es-Es'}}</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[11][3] + balancesPrevisionales[12][3]
+                                + balancesPrevisionales[13][3]| number:'1.2-2':'es-Es'}}</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[11][4] + balancesPrevisionales[12][4]
+                                + balancesPrevisionales[13][4]| number:'1.2-2':'es-Es'}}</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[11][5] + balancesPrevisionales[12][5]
+                                + balancesPrevisionales[13][5]| number:'1.2-2':'es-Es'}}</td>
+                        </tr>
+                        <tr *ngFor="let i of [11,12,13]">
+                            <td>{{headersBalance[i]}}</td>
+                            <td *ngFor="let balance of balancesPrevisionales[i]">
+                                {{balance | number:'1.2-2':'es-Es'}}€
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="header pl-4">Total Pasivo y Capital Propio</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][0] + balancesPrevisionales[7][0] +
+                                balancesPrevisionales[8][0] + balancesPrevisionales[9][0] + balancesPrevisionales[10][0]
+                                + balancesPrevisionales[11][0] + balancesPrevisionales[12][0] +
+                                balancesPrevisionales[13][0]| number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][1] + balancesPrevisionales[7][1] +
+                                balancesPrevisionales[8][1] + balancesPrevisionales[9][1] + balancesPrevisionales[10][0]
+                                + balancesPrevisionales[11][1] + balancesPrevisionales[12][1] +
+                                balancesPrevisionales[13][1]| number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][2] + balancesPrevisionales[7][2] +
+                                balancesPrevisionales[8][2] + balancesPrevisionales[9][2] + balancesPrevisionales[10][0]
+                                + balancesPrevisionales[11][2] + balancesPrevisionales[12][2] +
+                                balancesPrevisionales[13][2]| number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][3] + balancesPrevisionales[7][3] +
+                                balancesPrevisionales[8][3] + balancesPrevisionales[9][3] + balancesPrevisionales[10][0]
+                                + balancesPrevisionales[11][3] + balancesPrevisionales[12][3] +
+                                balancesPrevisionales[13][3]| number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][4] + balancesPrevisionales[7][4] +
+                                balancesPrevisionales[8][4] + balancesPrevisionales[9][4] + balancesPrevisionales[10][0]
+                                + balancesPrevisionales[11][4] + balancesPrevisionales[12][4] +
+                                balancesPrevisionales[13][4]| number:'1.2-2':'es-Es'}}€</td>
+                            <td style="font-weight: bold;">{{balancesPrevisionales[6][5] + balancesPrevisionales[7][5] +
+                                balancesPrevisionales[8][5] + balancesPrevisionales[9][5] + balancesPrevisionales[10][0]
+                                + balancesPrevisionales[11][5] + balancesPrevisionales[12][5] +
+                                balancesPrevisionales[13][5]| number:'1.2-2':'es-Es'}}€</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-tab>
+            <mat-tab label="Comparativa con el sector">
+                <mat-tab-group mat-align-tabs="center">
+                    <mat-tab label="Ventas">
+                        <div style="width: 50%; margin: 0 auto;">
+                            <canvas baseChart
+                              [datasets]="ventasData"
+                              [labels]="ventasLabels"
+                              [options]="ventasOptions"
+                              [legend]="ventasLegend"
+                              [chartType]="lineChartType"
+                              [plugins]="ventasPlugins">
+                            </canvas>
+                          </div>
+                    </mat-tab>
+                    <mat-tab label="EBITDA">
+                        <div style="width: 50%; margin: 0 auto;">
+                            <canvas baseChart
+                              [datasets]="ebitdaData"
+                              [labels]="ebitdaLabels"
+                              [options]="ebitdaOptions"
+                              [legend]="ebitdaLegend"
+                              [chartType]="lineChartType"
+                              [plugins]="ebitdaPlugins">
+                            </canvas>
+                          </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+</div>

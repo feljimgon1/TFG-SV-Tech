@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">
+        <h2 style="color: #000;">SV-Tech</h2>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navCollapse">
+        <span class="navbar-toggler-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/>
+          </svg></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navCollapse">
+
+        <!-- Navbar izquierda -->
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="/home" routerLinkActive="active">Inicio</a>
+            </li>
+
+            <li class="nav-item" *ngIf="(authService.getRole()=='PREMIUM') || (authService.getRole()=='MEDIUM') || (authService.getRole()=='BASICO')">
+                <a class="nav-link dropdown-toggle" routerLinkActive="active" routerLink="/plan-financiero" routerLinkActive="active">Mi plan financiero</a>
+                <ul>
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/plan-financiero">Cómo completar el plan financiero</a></li>
+                    <li *ngIf="(authService.getRole()=='MEDIUM')||(authService.getRole()=='PREMIUM')">
+                        <a class="nav-link active" routerLink="/registro-informacion" routerLinkActive="active">Registro de
+                            información</a>
+                    </li>
+                    <hr *ngIf="(authService.getRole()=='MEDIUM')||(authService.getRole()=='PREMIUM')">
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/balance">Balance</a></li>
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/cuenta-perdidas-ganancias">Cuenta de pérdidas y ganancias</a></li>
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/estrategia-mercado">Estrategia de mercado</a></li>
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/politica-inversion">Política de inversión</a></li>
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/politica-financiacion">Política de financiación</a></li>
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/estrategia-circulante">Estrategia de circulante</a></li>
+                    <hr>
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/resultados">Resultados</a></li>
+                    <li class="nav-item" *ngIf="(authService.getRole()=='PREMIUM') || (authService.getRole()=='MEDIUM')"><a class="nav-link" routerLinkActive="active" routerLink="/plan-experto" routerLinkActive="active">Plan del experto</a></li>
+                </ul>
+            </li>
+
+            
+
+            <li class="nav-item" *ngIf="(authService.getRole()=='PREMIUM')||(authService.getRole()=='ADMIN')">
+                <a class="nav-link" routerLinkActive="active" routerLink="/chat" routerLinkActive="active">Chat</a>
+            </li>
+
+            <li class="nav-item" *ngIf="authService.getRole()=='ADMIN'">
+                <a class="nav-link dropdown-toggle" routerLinkActive="active" routerLink="/home" routerLinkActive="active">Admin</a>
+                <ul>
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/users">Administración de usuarios</a></li>
+                    <li><a class="nav-link" routerLinkActive="active" routerLink="/consultancy">Consultoría</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+        <!-- Navbar derecha -->
+
+        <ul class="navbar-nav ms-auto">
+
+            <!-- USER -->
+
+            <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+                <li class="nav-item">
+                    <a href="" class="nav-link" routerLinkActive="active" routerLink="/login">Iniciar sesión</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link" routerLinkActive="active" routerLink="/register">Registro</a>
+                </li>
+            </ng-container>
+            
+            <!-- PERFIL -->
+
+            <ng-template #loggedIn>
+                <li class="nav-item">
+                    <a href="" class="nav-link dropdown-toggle" routerLinkActive="active" routerLink="/profile">Mi perfil</a>
+                    <ul>
+                        <li><a class="nav-link" routerLinkActive="active" routerLink="/" (click)="authService.logout()">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ng-template>
+
+        </ul>
+        
+    </div>
+</nav>

@@ -1,0 +1,453 @@
+<div class="plan-grid pb-3">
+  <ng-container *ngFor="let item of planFinanciero">
+    <div (click)="redirect(item.path)" [ngClass]="(item.name=='Balance')&&pasivo!=activo?'activo-pasivo-warning':(item.name=='Estrategia de circulante'?'active-plan-item':'plan-item')">{{item.name}}</div>
+  </ng-container>
+</div>
+
+<div class="col resultados mb-5 mt-4"  routerLink="/resultados">
+  Resultados
+</div>
+
+<mat-tab-group class="py-3 pb-5" mat-align-tabs="center">
+  <mat-tab label="Formulario">
+    <div class="col pt-3">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <label>Periodo medio de cobro</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="periodoMedioCobroUno" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="periodoMedioCobroDos" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="periodoMedioCobroTres" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="periodoMedioCobroCuatro" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="periodoMedioCobroCinco" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      
+        <label>Periodo medio de existencia</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="periodoMedioExistenciaUno" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="periodoMedioExistenciaDos" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 2</mat-hint>
+              </mat-form-field>
+            </div>    
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="periodoMedioExistenciaTres" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="periodoMedioExistenciaCuatro" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="periodoMedioExistenciaCinco" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <label>Periodo medio de pago</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="periodoMedioPagoUno" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="periodoMedioPagoDos" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="periodoMedioPagoTres" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="periodoMedioPagoCuatro" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="periodoMedioPagoCinco" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      
+        <label>Objetivo de tesorería</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="otUno" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="otDos" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="otTres" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="otCuatro" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="otCinco" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      
+        <label>Interés de póliza de crédito</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="interesPolizaCreditoUno" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="interesPolizaCreditoDos" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="interesPolizaCreditoTres" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="interesPolizaCreditoCuatro" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="interesPolizaCreditoCinco" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      
+        <label>Póliza de crédito</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="polizaCreditoUno" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="polizaCreditoDos" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="polizaCreditoTres" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="polizaCreditoCuatro" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="polizaCreditoCinco" matInput>
+                <mat-hint class="mat-hint">Periodo medio de cobro en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        
+        <label>Tasa impositiva</label>
+        <div class="form-group">
+          <mat-form-field appearance="fill">
+            <mat-label>Tasa impositiva</mat-label>
+            <input formControlName="tasaImpositiva" matInput>
+            <!-- <mat-hint class="mat-hint">Tasa impositiva</mat-hint> -->
+          </mat-form-field>
+        </div>
+        <button class="btn">Guardar estrategia de circulante</button>
+      </form>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Tabla de resultados">
+
+    <div class="col pt-3">
+      <div class="row r-results">
+        <div class="col c1-results">Periodo medio de cobro (en días)</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioCobroUno}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioCobroDos}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioCobroTres}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioCobroCuatro}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioCobroCinco}} días</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Periodo medio de existencia (en días)</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioExistenciaUno}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioExistenciaDos}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioExistenciaTres}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioExistenciaCuatro}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioExistenciaCinco}} días</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Periodo medio de pago (en días)</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioPagoUno}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioPagoDos}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioPagoTres}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioPagoCuatro}} días</div>
+            <div class="col pt-1">{{estrategiaCirculante.periodoMedioPagoCinco}} días</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Objetivo tesorería (€)</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{estrategiaCirculante.otUno | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaCirculante.otDos | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaCirculante.otTres | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaCirculante.otCuatro | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaCirculante.otCinco | number:'1.2-2':'es-Es'}}€</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Interés de la póliza de crédito (%)</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{estrategiaCirculante.interesPolizaCreditoUno | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaCirculante.interesPolizaCreditoDos | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaCirculante.interesPolizaCreditoTres | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaCirculante.interesPolizaCreditoCuatro | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaCirculante.interesPolizaCreditoCinco | number:'1.2-2':'es-Es'}}%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Póliza de crédito (€)</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{estrategiaCirculante.polizaCreditoUno | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaCirculante.polizaCreditoDos | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaCirculante.polizaCreditoTres | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaCirculante.polizaCreditoCuatro | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaCirculante.polizaCreditoCinco | number:'1.2-2':'es-Es'}}€</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Tasa impositiva (%)</div>
+        <div class="col c2-results">{{estrategiaCirculante.tasaImpositiva | number:'1.2-2':'es-Es'}}%</div>
+      </div>
+
+    </div>
+
+  </mat-tab>
+</mat-tab-group>

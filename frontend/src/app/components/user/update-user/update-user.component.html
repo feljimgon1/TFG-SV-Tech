@@ -1,0 +1,41 @@
+<div id="alert" class="show-hide-message p-3" style="margin: 0 auto; width: 50%;">
+    <div class="alert-message" [ngClass]="messageClass">
+        {{ message }}
+    </div>
+</div>
+<form class="pb-5" [formGroup]="form">
+    <div class="container pb-5">
+        <h4 class="pl-4">Está editando el usuario con la siguiente información</h4>
+        <mat-list role="list">
+            <mat-list-item role="listitem">{{user?.user.name}}</mat-list-item>
+            <mat-list-item role="listitem">{{user?.user.surname}}</mat-list-item>
+            <mat-list-item role="listitem">{{user?.user.email}}</mat-list-item>
+            <mat-list-item role="listitem">{{user?.user.rol}}</mat-list-item>
+        </mat-list>
+
+        <!-- <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="name" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Apellidos</mat-label>
+            <input formControlName="surname" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput>
+        </mat-form-field> -->
+
+        <mat-form-field appearance="fill">
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="rol" [(value)]="selectedRol">
+                <mat-option *ngFor="let rol of rolList" [value]="rol">
+                    {{rol}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button (click)="onSubmit()" [disabled]="processing" class="btn">Editar usuario</button>
+    </div>
+</form>

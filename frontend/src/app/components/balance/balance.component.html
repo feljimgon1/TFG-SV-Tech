@@ -1,0 +1,282 @@
+<div class="plan-grid pb-3">
+  <ng-container *ngFor="let item of planFinanciero">
+    <div (click)="redirect(item.path)" [ngClass]="item.name=='Balance'?'active-plan-item':'plan-item'">{{item.name}}</div>
+  </ng-container>
+</div>
+
+<div class="col resultados mb-5 mt-4"  routerLink="/resultados">
+  Resultados
+</div>
+
+<ng-container *ngIf="pasivo != activo">
+  <div class="alert alert-warning alerta-pasivo">
+    El pasivo debe coincidir con el activo
+  </div>
+</ng-container>
+
+<mat-tab-group class="py-5" mat-align-tabs="center">
+  <mat-tab label="Formulario">
+    <div class="col pt-3">
+      <div id="alert" class="row show-hide-message">
+        <div [ngClass]="messageClass">
+          {{ message }}
+        </div>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <!-- Inmovilizado -->
+
+        <label for="">Inmovilizado</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Inmovilizado inmaterial</mat-label>
+                <input type="number" formControlName="inmovilizadoInmaterial" matInput>
+                <mat-hint class="mat-hint">Inmovilizado inmaterial</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Inmovilizado Material</mat-label>
+                <input type="number" formControlName="inmovilizadoMaterial" matInput>
+                <mat-hint class="mat-hint">Inmovilizado Material</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Otros activos no corrientes</mat-label>
+                <input type="number" formControlName="otrosActivosFijos" matInput>
+                <mat-hint class="mat-hint">Otros activos no corrientes</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activo circulante -->
+        <label>Activo circulante</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Existencias</mat-label>
+                <input type="number" formControlName="existencias" matInput>
+                <mat-hint class="mat-hint">Existencias</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Deudores</mat-label>
+                <input type="number" formControlName="deudores" matInput>
+                <mat-hint class="mat-hint">Deudores</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Otros activos líquidos</mat-label>
+                <input type="number" formControlName="otrosActivosLiquidos" matInput>
+                <mat-hint class="mat-hint">Otros activos líquidos</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fondos propios -->
+
+        <label for="">Fondos propios</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Capital suscrito</mat-label>
+                <input type="number" formControlName="capitalSuscrito" matInput>
+                <mat-hint class="mat-hint">Capital suscrito</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Otros fondos propios</mat-label>
+                <input type="number" formControlName="otrosFondosPropios" matInput>
+                <mat-hint class="mat-hint">Otros fondos propios</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pasivo fijo -->
+
+        <label for="">Pasivo fijo</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Deuda Nueva</mat-label>
+                <input type="number" formControlName="acreedoresLP" matInput>
+                <mat-hint class="mat-hint">Deuda Nueva</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Deuda antigua</mat-label>
+                <input type="number" formControlName="otrosPasivosFijos" matInput>
+                <mat-hint class="mat-hint">Deuda antigua</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Provisiones</mat-label>
+                <input type="number" formControlName="provisiones" matInput>
+                <mat-hint class="mat-hint">Provisiones</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pasivo líquido -->
+
+        <label for="">Pasivo líquido</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Deudas financieras</mat-label>
+                <input type="number" formControlName="deudasFinancieras" matInput>
+                <mat-hint class="mat-hint">Deudas financieras</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Acreedores comerciales</mat-label>
+                <input type="number" formControlName="acreedoresComerciales" matInput>
+                <mat-hint class="mat-hint">Acreedores comerciales</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Otros pasivos líquidos</mat-label>
+                <input type="number" formControlName="otrosPasivosLiquidos" matInput>
+                <mat-hint class="mat-hint">Otros pasivos líquidos</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn">Guardar balance</button>
+
+      </form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Tabla">
+    <div class="col p-3 results">
+
+      <div class="row r-results header">
+        <div class="col c1-results">Activo no corriente</div>
+        <div class="col c2-results">{{balance.inmovilizadoInmaterial + balance.inmovilizadoMaterial +
+          balance.otrosActivosFijos | number:'1.2-2':'es-Es'}}€</div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Inmovilizado inmaterial</div>
+        <div class="col c2-results">{{balance.inmovilizadoInmaterial| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Inmovilizado material</div>
+        <div class="col c2-results">{{balance.inmovilizadoMaterial| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Otros activos no corrientes</div>
+        <div class="col c2-results">{{balance.otrosActivosFijos| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results header">
+        <div class="col c1-results">Activo corriente</div>
+        <div class="col c2-results">{{balance.existencias + balance.deudores + balance.otrosActivosLiquidos| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Existencias</div>
+        <div class="col c2-results">{{balance.existencias| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Deudores</div>
+        <div class="col c2-results">{{balance.deudores| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Otros activos líquidos</div>
+        <div class="col c2-results">{{balance.otrosActivosLiquidos| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results header">
+        <div class="col c1-results">Total activos</div>
+        <div class="col c2-results">{{balance.existencias + balance.deudores + balance.otrosActivosLiquidos +
+          balance.inmovilizadoInmaterial+balance.inmovilizadoMaterial + balance.otrosActivosFijos| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results header">
+        <div class="col c1-results">Fondos propios</div>
+        <div class="col c2-results">{{balance.capitalSuscrito + balance.otrosFondosPropios| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Capital suscrito</div>
+        <div class="col c2-results">{{balance.capitalSuscrito| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Otros fondos propios</div>
+        <div class="col c2-results">{{balance.otrosFondosPropios| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results header">
+        <div class="col c1-results">Pasivo no corriente</div>
+        <div class="col c2-results">{{balance.acreedoresLP + balance.otrosPasivosFijos + balance.provisiones| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Deuda nueva</div>
+        <div class="col c2-results">{{balance.acreedoresLP| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Deuda antigua</div>
+        <div class="col c2-results">{{balance.otrosPasivosFijos| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Provisiones</div>
+        <div class="col c2-results">{{balance.provisiones| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results header">
+        <div class="col c1-results">Pasivo corriente</div>
+        <div class="col c2-results">{{balance.deudasFinancieras + balance.acreedoresComerciales +
+          balance.otrosPasivosLiquidos | number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Deudas financieras</div>
+        <div class="col c2-results">{{balance.deudasFinancieras| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Acreedores comerciales</div>
+        <div class="col c2-results">{{balance.acreedoresComerciales| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results">
+        <div class="col c1-results">Otros pasivos líquidos</div>
+        <div class="col c2-results">{{balance.otrosPasivosLiquidos| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+      <div class="row r-results header" style="border: 1px solid #e0e0e0;">
+        <div class="col c1-results">Total pasivo y capital propio</div>
+        <div class="col c2-results">{{balance.capitalSuscrito + balance.otrosFondosPropios + balance.acreedoresLP +
+          balance.otrosPasivosFijos + balance.provisiones + balance.deudasFinancieras + balance.acreedoresComerciales +
+          balance.otrosPasivosLiquidos| number:'1.2-2':'es-Es'}}€</div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

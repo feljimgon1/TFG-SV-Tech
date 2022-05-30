@@ -1,0 +1,22 @@
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 65%;
+    margin: 0 auto;
+}
+
+.cell-actions {
+    text-align: center;
+}
+
+//Error
+
+.container {
+    height: 40vh;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.error-message{
+    font-family: Arial, Helvetica, sans-serif!important;
+}

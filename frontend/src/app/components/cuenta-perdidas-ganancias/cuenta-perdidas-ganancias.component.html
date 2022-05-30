@@ -1,0 +1,163 @@
+<div class="plan-grid pb-3">
+    <ng-container *ngFor="let item of planFinanciero">
+        <div (click)="redirect(item.path)" [ngClass]="(item.name=='Balance')&&pasivo!=activo?'activo-pasivo-warning':(item.name=='Cuenta de pérdidas y ganancias'?'active-plan-item':'plan-item')">{{item.name}}</div>
+    </ng-container>
+</div>
+
+<div class="col resultados mb-5 mt-4"  routerLink="/resultados">
+    Resultados
+  </div>
+  
+<mat-tab-group class="py-3 pb-5" mat-align-tabs="center">
+
+    <mat-tab label="Formulario">
+        <div class="col pt-3">
+            <div id="alert" class="row show-hide-message">
+                <div [ngClass]="messageClass">
+                    {{ message }}
+                </div>
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                <label for="">Ingresos de explotación</label>
+                <div class="row mb-5">
+                    <div class="col">
+                        <div class="form-group">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Ingresos de explotación</mat-label>
+                                <input formControlName="importeNetoCifraVentas" matInput>
+                                <mat-hint class="mat-hint">Ingresos de explotación</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Consumo de mercaderías y materias</mat-label>
+                                <input formControlName="consumoMercaderiasMaterias" matInput>
+                                <mat-hint class="mat-hint">Consumo de mercaderías y materias</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Gasto de personal</mat-label>
+                                <input formControlName="gastoPersonal" matInput>
+                                <mat-hint class="mat-hint">Gasto de personal</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Otros gastos de explotación</mat-label>
+                                <input formControlName="otrosGastosExplotacion" matInput>
+                                <mat-hint class="mat-hint">Otros gastos de explotación</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Cuota de amortización técnica (CAT)</mat-label>
+                                <input formControlName="cat" matInput>
+                                <mat-hint class="mat-hint">Cuota de amortización técnica (CAT)</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Ingresos financieros</mat-label>
+                                <input formControlName="ingresosFinancieros" matInput>
+                                <mat-hint class="mat-hint">Ingresos financieros</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Gastos financieros</mat-label>
+                                <input formControlName="gastosFinancieros" matInput>
+                                <mat-hint class="mat-hint">Gastos financieros</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn">Guardar cuenta de pérdidas y ganancias</button>
+            </form>
+
+       </div> 
+
+    </mat-tab>
+    <mat-tab label="Tabla de resultados">
+        <div class="col p-3 results">
+        <div class="row r-results">
+            <div class="col c1-results header">Ingresos de explotación</div>
+            <div class="col c2-results">{{cuentaPerdidasGanancias.importeNetoCifraVentas | number:'1.2-2':'es-Es'}}€</div>
+        </div>
+        <div class="row r-results">
+            <div class="col c1-results">Consumo de mercaderías y materias</div>
+            <div class="col c2-results">{{cuentaPerdidasGanancias.consumoMercaderiasMaterias | number:'1.2-2':'es-Es'}}€</div>
+        </div>
+        <div class="row r-results">
+            <div class="col c1-results">Gasto de personal</div>
+            <div class="col c2-results">{{cuentaPerdidasGanancias.gastoPersonal| number:'1.2-2':'es-Es'}}€</div>
+        </div>
+        <div class="row r-results">
+            <div class="col c1-results">Otros gastos de explotación</div>
+            <div class="col c2-results">{{cuentaPerdidasGanancias.otrosGastosExplotacion | number:'1.2-2':'es-Es'}}€</div>
+        </div>
+        <div class="row r-results">
+            <div class="col c1-results header">EBITDA</div>
+            <div class="col c2-results">{{(cuentaPerdidasGanancias.importeNetoCifraVentas) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)| number:'1.2-2':'es-Es'}}€</div>
+        </div>
+        <div class="row r-results">
+            <div class="col c1-results">CAT</div>
+            <div class="col c2-results">{{cuentaPerdidasGanancias.cat | number:'1.2-2':'es-Es'}}€</div>
+        </div>
+        <div class="row r-results">
+            <div class="col c1-results header">BAIT</div>
+            <div class="col c2-results">{{((cuentaPerdidasGanancias.importeNetoCifraVentas) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) -(cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi) | number:'1.2-2':'es-Es'}}€</div>
+        </div>
+        <div class="row r-results">
+            <div class="col c1-results">Ingresos financieros</div>
+            <div class="col c2-results">{{cuentaPerdidasGanancias.ingresosFinancieros | number:'1.2-2':'es-Es'}}</div>
+        </div>
+        <div class="row r-results">
+            <div class="col c1-results">Gastos financieros</div>
+            <div class="col c2-results">{{cuentaPerdidasGanancias.gastosFinancieros | number:'1.2-2':'es-Es'}}</div>
+        </div>
+        <div class="row r-results">
+            <div class="col c1-results header">Resultado financiero</div>
+            <div class="col c2-results">{{cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros | number:'1.2-2':'es-Es'}}€</div>
+        </div>
+
+        <div class="row r-results">
+            <div class="col c1-results header">Resultados ordinarios antes de impuestos</div>
+            <div class="col c2-results">{{(cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) +(((cuentaPerdidasGanancias.importeNetoCifraVentas) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) -(cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi)) | number:'1.2-2':'es-Es'}}€</div>
+        </div>
+
+        <div class="row r-results">
+            <div class="col c1-results">Impuestos sobre sociedades</div>
+            <div class="col c2-results" *ngIf="(cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) + (((cuentaPerdidasGanancias.importeNetoCifraVentas + cuentaPerdidasGanancias.otrosIngresosExplotacion + cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias + cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) - (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))>0">{{0.25*((cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) +(((cuentaPerdidasGanancias.importeNetoCifraVentas) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) -(cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))) | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col c2-results" *ngIf="(cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) + (((cuentaPerdidasGanancias.importeNetoCifraVentas + cuentaPerdidasGanancias.otrosIngresosExplotacion + cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias + cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) - (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))<=0">{{0*((cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) +(((cuentaPerdidasGanancias.importeNetoCifraVentas) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) -(cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))) | number:'1.2-2':'es-Es'}}€</div>
+        </div>
+
+        <div class="row r-results header" style="border: 1px solid #e0e0e0;">
+            <div class="col c1-results">Resultado del ejercicio</div>
+            <div class="col c2-results" *ngIf="(cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) + (((cuentaPerdidasGanancias.importeNetoCifraVentas + cuentaPerdidasGanancias.otrosIngresosExplotacion + cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias + cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) - (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))<=0">{{(cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) +(((cuentaPerdidasGanancias.importeNetoCifraVentas) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) -(cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi)) -(0*((cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) +(((cuentaPerdidasGanancias.importeNetoCifraVentas + cuentaPerdidasGanancias.otrosIngresosExplotacion+cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) -(cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi)))) | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col c2-results" *ngIf="(cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) + (((cuentaPerdidasGanancias.importeNetoCifraVentas + cuentaPerdidasGanancias.otrosIngresosExplotacion + cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias + cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) - (cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi))>0">{{(cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) +(((cuentaPerdidasGanancias.importeNetoCifraVentas) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) -(cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi)) -(0.25*((cuentaPerdidasGanancias.ingresosFinancieros - cuentaPerdidasGanancias.gastosFinancieros) +(((cuentaPerdidasGanancias.importeNetoCifraVentas + cuentaPerdidasGanancias.otrosIngresosExplotacion+cuentaPerdidasGanancias.trppi) - (cuentaPerdidasGanancias.consumoMercaderiasMaterias +cuentaPerdidasGanancias.gastoPersonal + cuentaPerdidasGanancias.otrosGastosExplotacion)) -(cuentaPerdidasGanancias.cat) + (cuentaPerdidasGanancias.trppi)))) | number:'1.2-2':'es-Es'}}€</div>
+        </div>
+    </div>
+    </mat-tab>
+
+</mat-tab-group>

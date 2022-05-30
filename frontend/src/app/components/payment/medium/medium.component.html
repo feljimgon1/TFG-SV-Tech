@@ -1,0 +1,20 @@
+<div class="content p-5">
+    <div class="container">
+      <div class="credit-card">
+        <div>
+          <div *ngIf = "cardError" id="alert" class="alert alert-danger" role="alert">
+            {{cardError}}
+          </div>
+          <div *ngIf = "success" class="alert alert-success" role="alert">
+            ¡Transacción realizada!
+          </div>
+          <div class="form-container p-5">
+            <div #cardInfo></div>
+          </div>
+        </div>
+      </div>
+  
+      <button [disabled]="processing" (click)="onClick()" class="btn btn-success btn-lg btn-block" style="width: 30%; margin-left: 35%;">Proceder al pago</button>
+  
+    </div>
+  </div>

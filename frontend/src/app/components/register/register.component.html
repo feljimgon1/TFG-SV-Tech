@@ -1,0 +1,80 @@
+    <div class="content p-5">
+        <div class="alert-container" style="margin-top:-3%;">
+            <div id="alert" class="show-hide-message">
+              <div class="alert-message" [ngClass]="messageClass">
+                {{ message }}
+              </div>
+            </div>
+          </div>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" formControlName="name" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" placeholder="Nombre" />
+                <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                    <div *ngIf="f['name'].errors['required']">Proporcionar un nombre es obligatorio.</div>
+                </div>
+            </div>
+      
+            <div class="form-group">
+                <label>Apellidos</label>
+                <input type="text" formControlName="surname" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f['surname'].errors }" placeholder="Apellidos" />
+                <div *ngIf="submitted && f['surname'].errors" class="invalid-feedback">
+                    <div *ngIf="f['surname'].errors['required']">El apellido es obligatorio</div>
+                </div>
+            </div>
+      
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" formControlName="email" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+                    placeholder="Correo Electrónico" />
+                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">El campo del correo electrónico es obligatorio</div>
+                    <div *ngIf="f['email'].errors['email']">Introduzca un correo electrónico válido</div>
+                </div>
+            </div>
+      
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" formControlName="password" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" placeholder="Contraseña" />
+                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Se debe proporcionar una contraseña</div>
+                    <div *ngIf="f['password'].errors['minlength']">La contraseña debe ser de entre 8 y 25 caracteres y
+                        debe incluir:
+                        <ul>
+                            <li>
+                                Un carácter especial
+                            </li>
+                            <li>
+                                Una mayúscula
+                            </li>
+                            <li>
+                                Una minúscula
+                            </li>
+                            <li>
+                                Un número
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label>Repita la contraseña</label>
+              <input type="password" formControlName="confirmPass" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f['confirmPass'].errors }"
+                    placeholder="Repita la contraseña" />
+                <div *ngIf="submitted && f['confirmPass'].errors" class="invalid-feedback">
+                    Se debe proporcionar una contraseña
+                </div>
+            </div>
+            <div class="form-group" id="button-form">
+                <button [disabled]="processing" class="btn">Registrarse</button>
+            </div>
+        </form>
+      
+      </div>
+      

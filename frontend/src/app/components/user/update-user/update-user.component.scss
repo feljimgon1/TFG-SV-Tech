@@ -1,0 +1,40 @@
+//General
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Componente*/
+
+form {
+    width: 100%;
+}
+
+mat-card{
+    width: 50%;
+    margin: 0 auto;
+    background-color: #e0e0e0;
+    border-radius: 5%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    mat-form-field {
+        margin: 0 auto;
+        width: 40%;
+    }
+    .btn {
+        margin: 0 auto;
+        width: 25%;
+        border: 1px solid black;
+        transition: 0.4s;
+    }
+}
+
+.btn:hover {
+    color: white;
+    background-color: black;
+}

@@ -1,0 +1,378 @@
+<div class="plan-grid pb-3">
+  <ng-container *ngFor="let item of planFinanciero">
+    <div (click)="redirect(item.path)" [ngClass]="(item.name=='Balance')&&pasivo!=activo?'activo-pasivo-warning':(item.name=='Estrategia de mercado'?'active-plan-item':'plan-item')">{{item.name}}</div>
+  </ng-container>
+</div>
+
+<div class="col resultados mb-5 mt-4"  routerLink="/resultados">
+  Resultados
+</div>
+
+<mat-tab-group class="py-3 pb-5" mat-align-tabs="center">
+  <mat-tab label="Formulario">
+    <div class="col pt-3">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>Objetivo de ventas en cinco años (€)</mat-label>
+              <input formControlName="objetivoVentasAnyoCinco" matInput>
+              <mat-hint class="mat-hint">Objetivo de ventas en cinco años (€)</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <label>Porcentaje objetivo de ventas por año </label>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="ventasAlcanzadasUno" matInput>
+                <mat-hint class="mat-hint">Porcentaje objetivo de ventas en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="ventasAlcanzadasDos" matInput>
+                <mat-hint class="mat-hint">Porcentaje objetivo de ventas en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="ventasAlcanzadasTres" matInput>
+                <mat-hint class="mat-hint">Porcentaje objetivo de ventas en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="ventasAlcanzadasCuatro" matInput>
+                <mat-hint class="mat-hint">Porcentaje objetivo de ventas en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="ventasAlcanzadasCinco" matInput>
+                <mat-hint class="mat-hint">Porcentaje objetivo de ventas en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label>Número de empleados por año</label>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="numeroEmpleadosUno" matInput>
+                <mat-hint class="mat-hint">Número de empleados en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="numeroEmpleadosDos" matInput>
+                <mat-hint class="mat-hint">Número de empleados en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="numeroEmpleadosTres" matInput>
+                <mat-hint class="mat-hint">Número de empleados en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="numeroEmpleadosCuatro" matInput>
+                <mat-hint class="mat-hint">Número de empleados en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="numeroEmpleadosCinco" matInput>
+                <mat-hint class="mat-hint">Número de empleados en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label>Gasto de empleado por año</label>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="gastoEmpleadoUno" matInput>
+                <mat-hint class="mat-hint">Gasto de empleados en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="gastoEmpleadoDos" matInput>
+                <mat-hint class="mat-hint">Gasto de empleados en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="gastoEmpleadoTres" matInput>
+                <mat-hint class="mat-hint">Gasto de empleados en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="gastoEmpleadoCuatro" matInput>
+                <mat-hint class="mat-hint">Gasto de empleados en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="gastoEmpleadoCinco" matInput>
+                <mat-hint class="mat-hint">Gasto de empleados en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label>Aprovisionamiento/Ventas por año</label>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="aprovisionamientoPorVentasUno" matInput>
+                <mat-hint class="mat-hint">Aprovisionamiento/Ventas en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="aprovisionamientoPorVentasDos" matInput>
+                <mat-hint class="mat-hint">Aprovisionamiento/Ventas en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="aprovisionamientoPorVentasTres" matInput>
+                <mat-hint class="mat-hint">Aprovisionamiento/Ventas en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="aprovisionamientoPorVentasCuatro" matInput>
+                <mat-hint class="mat-hint">Aprovisionamiento/Ventas en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="aprovisionamientoPorVentasCinco" matInput>
+                <mat-hint class="mat-hint">Aprovisionamiento/Ventas en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label>Otros gastos de explotación/Ventas por año</label>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 1</mat-label>
+                <input formControlName="otrosGastosExplotacionPorVentasUno" matInput>
+                <mat-hint class="mat-hint">Otros gastos de explotación en el año 1</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 2</mat-label>
+                <input formControlName="otrosGastosExplotacionPorVentasDos" matInput>
+                <mat-hint class="mat-hint">Otros gastos de explotación en el año 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 3</mat-label>
+                <input formControlName="otrosGastosExplotacionPorVentasTres" matInput>
+                <mat-hint class="mat-hint">Otros gastos de explotación en el año 3</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 4</mat-label>
+                <input formControlName="otrosGastosExplotacionPorVentasCuatro" matInput>
+                <mat-hint class="mat-hint">Otros gastos de explotación en el año 4</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Año 5</mat-label>
+                <input formControlName="otrosGastosExplotacionPorVentasCinco" matInput>
+                <mat-hint class="mat-hint">Otros gastos de explotación en el año 5</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <button class="btn">Guardar estrategia de mercado</button>
+      </form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Tabla de resultados">
+
+    <div class="col pt-3">
+      <div class="row r-results header">
+        <div class="col c1-results header">Objetivo de ventas para los próximos cinco años</div>
+        <div class="col c2-results">{{estrategiaMercado.objetivoVentasAnyoCinco | number:'1.2-2':'es-Es'}}€</div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Ventas alcanzadas por año (%)</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{estrategiaMercado.ventasAlcanzadasUno | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.ventasAlcanzadasDos | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.ventasAlcanzadasTres | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.ventasAlcanzadasCuatro | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.ventasAlcanzadasCinco | number:'1.2-2':'es-Es'}}%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Número de empleados por año</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{estrategiaMercado.numeroEmpleadosUno}}</div>
+            <div class="col pt-1">{{estrategiaMercado.numeroEmpleadosDos}}</div>
+            <div class="col pt-1">{{estrategiaMercado.numeroEmpleadosTres}}</div>
+            <div class="col pt-1">{{estrategiaMercado.numeroEmpleadosCuatro}}</div>
+            <div class="col pt-1">{{estrategiaMercado.numeroEmpleadosCinco}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Gasto de empleado por año</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{estrategiaMercado.gastoEmpleadoUno | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaMercado.gastoEmpleadoDos | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaMercado.gastoEmpleadoTres | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaMercado.gastoEmpleadoCuatro | number:'1.2-2':'es-Es'}}€</div>
+            <div class="col pt-1">{{estrategiaMercado.gastoEmpleadoCinco | number:'1.2-2':'es-Es'}}€</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results">
+        <div class="col c1-results">Aprovisionamiento/Ventas por año</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{estrategiaMercado.aprovisionamientoPorVentasUno | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.aprovisionamientoPorVentasDos | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.aprovisionamientoPorVentasTres | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.aprovisionamientoPorVentasCuatro | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.aprovisionamientoPorVentasCinco | number:'1.2-2':'es-Es'}}%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row r-results" style="border: 1px solid #e0e0e0;">
+        <div class="col c1-results">Otros gastos de explotación/Ventas por año</div>
+        <div class="col c2-results">
+          <div class="row table-dark">
+            <div class="col">Año 1</div>
+            <div class="col">Año 2</div>
+            <div class="col">Año 3</div>
+            <div class="col">Año 4</div>
+            <div class="col">Año 5</div>
+          </div>
+          <div class="row">
+            <div class="col pt-1">{{estrategiaMercado.otrosGastosExplotacionPorVentasUno | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.otrosGastosExplotacionPorVentasDos | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.otrosGastosExplotacionPorVentasTres | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.otrosGastosExplotacionPorVentasCuatro | number:'1.2-2':'es-Es'}}%</div>
+            <div class="col pt-1">{{estrategiaMercado.otrosGastosExplotacionPorVentasCinco | number:'1.2-2':'es-Es'}}%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+  </mat-tab>
+</mat-tab-group>

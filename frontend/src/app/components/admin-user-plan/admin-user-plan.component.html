@@ -1,0 +1,230 @@
+<div class="container pb-4">
+    <ng-container *ngIf="user">
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Balance">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Inmovilizado Inmaterial</td>
+                            <td>{{user['balance']['inmovilizadoInmaterial']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Inmovilizado Material</td>
+                            <td>{{user['balance']['inmovilizadoMaterial']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Otros Activos No Corrientes</td>
+                            <td>{{user['balance']['otrosActivosFijos']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Existencias</td>
+                            <td>{{user['balance']['existencias']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Deudores</td>
+                            <td>{{user['balance']['deudores']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Otros Activos Líquidos</td>
+                            <td>{{user['balance']['otrosActivosLiquidos']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Capital Suscrito</td>
+                            <td>{{user['balance']['capitalSuscrito']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Otros Fondos Propios</td>
+                            <td>{{user['balance']['otrosFondosPropios']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Deuda Nueva</td>
+                            <td>{{user['balance']['acreedoresLP']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Deuda Antigua</td>
+                            <td>{{user['balance']['otrosPasivosFijos']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Provisiones</td>
+                            <td>{{user['balance']['provisiones']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Deudas Financieras</td>
+                            <td>{{user['balance']['deudasFinancieras']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Acreedores Comerciales</td>
+                            <td>{{user['balance']['acreedoresComerciales']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Otros Pasivos Líquidos</td>
+                            <td>{{user['balance']['otrosPasivosLiquidos']}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-tab>
+            <mat-tab label="Cuenta de Pérdidas y Ganancias">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Importe Neto de Cifra de Ventas</td>
+                            <td>{{user['CPYG']['importeNetoCifraVentas']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Otros Ingresos de Explotación</td>
+                            <td>{{user['CPYG']['otrosIngresosExplotacion']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Consumo de Mercaderías y Materias</td>
+                            <td>{{user['CPYG']['consumoMercaderiasMaterias']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Gasto de Personal</td>
+                            <td>{{user['CPYG']['gastoPersonal']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Otros Gastos de Explotación</td>
+                            <td>{{user['CPYG']['otrosGastosExplotacion']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Cuota de Amortización Técnica (CAT)</td>
+                            <td>{{user['CPYG']['cat']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Ingresos Financieros</td>
+                            <td>{{user['CPYG']['ingresosFinancieros']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Gastos Financiaceros</td>
+                            <td>{{user['CPYG']['gastosFinancieros']}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-tab>
+            <mat-tab label="Estrategia de Mercado">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Objetivo de Ventas en Cinco Años</td>
+                            <td>{{user['estrategiaMercado']['objetivoVentasAnyoCinco']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Ventas alcanzadas</td>
+                            <td>{{user['estrategiaMercado']['ventasAlcanzadasUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Número de Empleados por Año</td>
+                            <td>{{user['estrategiaMercado']['numeroEmpleadosUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Gasto de empleados por Año</td>
+                            <td>{{user['estrategiaMercado']['gastoEmpleadoUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Aprovisionamiento por Ventas</td>
+                            <td>{{user['estrategiaMercado']['aprovisionamientoPorVentasUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Otros Gastos de Explotación por Ventas</td>
+                            <td>{{user['estrategiaMercado']['otrosGastosExplotacionPorVentasUno']}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-tab>
+            <mat-tab label="Política de Inversión">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Inversión del Inmovilizado Inmaterial</td>
+                            <td>{{user['politicaInversion']['inversionInmovilizadoInmaterialUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Vida del Inmovilizado Material</td>
+                            <td>{{user['politicaInversion']['vidaInmInmaterialUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Inversión del Inmovilizado Material</td>
+                            <td>{{user['politicaInversion']['inversionInmovilizadoMaterialUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Vida del Inmovilizado Material</td>
+                            <td>{{user['politicaInversion']['vidaInmInmaterialUno']}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-tab>
+            <mat-tab label="Política de Financiación">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Vencimiento de la Deuda Antigua</td>
+                            <td>{{user['politicaFinanciacion']['vencimientoDeudaAntiguaUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Interés de la Deuda Antigua</td>
+                            <td>{{user['politicaFinanciacion']['interesDeudaAntiguaUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Deuda Nueva</td>
+                            <td>{{user['politicaFinanciacion']['deudaNuevaUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Vencimiento de la Deuda Nueva</td>
+                            <td>{{user['politicaFinanciacion']['vencimientoDeudaNuevaUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Interés de la Deuda Nueva</td>
+                            <td>{{user['politicaFinanciacion']['interesDeudaNuevaUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Ampliación de Capital</td>
+                            <td>{{user['politicaFinanciacion']['ampliacionCapital']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Prima de Emisión</td>
+                            <td>{{user['politicaFinanciacion']['primaEmision']}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-tab>
+            <mat-tab label="Estrategia de Circulante">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Periodo Medio de Cobro</td>
+                            <td>{{user['estrategiaCirculante']['periodoMedioCobroUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Periodo Medio de Existencia</td>
+                            <td>{{user['estrategiaCirculante']['periodoMedioExistenciaUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Periodo Medio de Pago</td>
+                            <td>{{user['estrategiaCirculante']['periodoMedioPagoUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Objetivo de Tesorería</td>
+                            <td>{{user['estrategiaCirculante']['otUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Interés de Póliza de Crédito</td>
+                            <td>{{user['estrategiaCirculante']['interesPolizaCreditoUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Periodo Medio de Existencia</td>
+                            <td>{{user['estrategiaCirculante']['periodoMedioExistenciaUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Póliza de Crédito</td>
+                            <td>{{user['estrategiaCirculante']['polizaCreditoUno']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Tasa Impositiva</td>
+                            <td>{{user['estrategiaCirculante']['tasaImpositiva']}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-tab>
+        </mat-tab-group>
+    </ng-container>
+</div>

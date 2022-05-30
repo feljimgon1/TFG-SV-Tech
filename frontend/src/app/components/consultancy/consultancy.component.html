@@ -1,0 +1,34 @@
+<ng-container *ngIf="users.length!=0;else sinUsuarios">
+    <div class="table-responsive py-3">
+        <table class="table table-striped mat-elevation-z6">
+            <thead class="thead thead-dark">
+                <ng-container *ngFor="let col of displayedColumns">
+                    <th [ngClass]="((col==='Plan del usuario')||(col==='Plan personalizado'))?'cell-actions':''">{{col}}
+                    </th>
+                </ng-container>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users; let i = index">
+                    <td class="align-middle py-3 px-3">{{i}}</td>
+                    <td class="align-middle py-3 px-3">{{user.name + " " + user.surname}}</td>
+                    <td class="align-middle py-3 px-3">{{user.email}}</td>
+                    <td class="cell-actions" class="align-middle py-3 px-3">
+                        <button [disabled]="processing" class="btn btn-outline-primary" (click)="planUsuario(user._id)">
+                            Visualizar plan de usuario
+                        </button>
+                    </td>
+                    <td class="cell-actions" class="align-middle py-3 px-3">
+                        <button [disabled]="processing" class="btn btn-outline-primary" (click)="editarPlanUsuario(user._id)">
+                            Crear plan de usuario
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+<ng-template #sinUsuarios>
+    <div class="container">
+        <h2 class="error-message p-4">No existen usuarios con rol medium o premium</h2>
+    </div>
+</ng-template>
